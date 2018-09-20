@@ -1,28 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <DateTimePicker
+      v-model="date"
+      locale="am"
+    />
+
+    <DateTimePicker
+      style="margin-top: 200px"
+      v-model="date"
+      :inline="true"
+      :min-date="'2018-08-03'"
+      :max-date="'2018-12-01'"
+    >
+    </DateTimePicker>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import DateTimePicker from './components/DateTimePicker.vue';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    name: 'app',
+    components: {
+      DateTimePicker
+    },
+    data() {
+      return {
+        date: '',
+      };
+    },
   }
-}
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
