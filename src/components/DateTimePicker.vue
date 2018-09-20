@@ -49,7 +49,7 @@
           v-if="!isDatePicker"
           @input="input"
           :value="date"
-          :second-picker="secondPicker"
+          :seconds-picker="secondsPicker"
         >
           <slot slot="hours-up" name="hours-up"></slot>
           <slot slot="hours-down" name="hours-down"></slot>
@@ -100,7 +100,7 @@
           v-if="!isDatePicker"
           @input="input"
           :value="date"
-          :second-picker="secondPicker"
+          :seconds-picker="secondsPicker"
         >
           <slot slot="hours-up" name="hours-up"></slot>
           <slot slot="hours-down" name="hours-down"></slot>
@@ -161,7 +161,7 @@
         type: [Boolean],
         default: false,
       },
-      secondPicker: {
+      secondsPicker: {
         type: [Boolean],
         default: false,
       },

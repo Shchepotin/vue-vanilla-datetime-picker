@@ -44,7 +44,7 @@ components: {
 | format             |          | String                          | yyyy-LL-dd HH:mm    | Display [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens).                      |
 | time-picker        |          | Boolean                         | true                | Show time picker.                                                                                                      |
 | start-from-sunday  |          | Boolean                         | false               | Set Sunday as first day of week.                                                                                       |
-| second-picker      |          | Boolean                         | false               | Show second picker.                                                                                                    |
+| seconds-picker      |          | Boolean                         | false               | Show second picker.                                                                                                    |
 
 ## Development
 

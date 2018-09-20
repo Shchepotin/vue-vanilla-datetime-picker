@@ -17,7 +17,7 @@
       <slot slot="down" name="minutes-down"></slot>
     </text-slider>
     <text-slider
-      v-if="secondPicker"
+      v-if="secondsPicker"
       :value="selectedSecond"
       @input="input"
       :options="seconds"
@@ -37,7 +37,7 @@
       value: {
         required: false,
       },
-      secondPicker: {
+      secondsPicker: {
         type: [Boolean],
         default: false,
       }
