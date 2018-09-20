@@ -2,7 +2,6 @@
   <div id="app">
     <DateTimePicker
       v-model="date"
-      locale="am"
     />
 
     <DateTimePicker
