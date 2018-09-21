@@ -6,7 +6,15 @@
         @click="toggle"
         class="datetime-picker__button"
       >
-        {{ formattedDateTime }}
+        <slot
+          v-if="value === '' || value === null || value === undefined"
+          name="choose-date"
+        >Choose date</slot>
+        <slot
+          v-else
+          name="formatted-datetime"
+          :formatted-datetime="formattedDateTime"
+        >{{ formattedDateTime }}</slot>
       </button>
       <div
         v-if="isShow"
@@ -188,6 +196,7 @@
     },
     computed: {
       date() {
+        // console.log(this.value, this.valueFormat, this.getDateTimeLocal());
         return this.toDateTime(this.value, this.valueFormat, this.getDateTimeLocal());
       },
       parsedMinDate() {
@@ -222,9 +231,9 @@
       },
     },
     created() {
-      if (this.value === null || this.value === '' || this.value === undefined) {
-        this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
-      }
+      // if (this.value === null || this.value === '' || this.value === undefined) {
+      //   this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
+      // }
     },
   };
 </script>

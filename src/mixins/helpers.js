@@ -126,7 +126,7 @@ export default {
     toDateTime(value, format, defaultDate = null) {
       let date = defaultDate;
 
-      if ((typeof value) === 'string') {
+      if (value !== '' && (typeof value) === 'string') {
         date = DateTime.fromFormat(value, format);
       } else if (value !== null && value.isValid === true) {
         date = value;

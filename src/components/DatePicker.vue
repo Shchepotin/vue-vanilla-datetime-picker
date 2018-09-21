@@ -108,6 +108,7 @@
       >
         <button
           @click="selectMonth(info.month)"
+          type="button"
           class="date-picker__month-button"
           :class="{
             'date-picker__month-button--selected': info.selected,
@@ -125,6 +126,7 @@
       >
         <button
           @click="selectYear(info.year)"
+          type="button"
           class="date-picker__year-button"
           :class="{
             'date-picker__year-button--selected': info.selected,

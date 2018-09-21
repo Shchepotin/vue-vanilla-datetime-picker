@@ -1,6 +1,6 @@
 {
   "name": "vue-vanilla-datetime-picker",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
