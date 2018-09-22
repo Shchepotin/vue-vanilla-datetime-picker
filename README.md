@@ -34,7 +34,7 @@ components: {
 
 | Name               | Required | Type                            | Default             | Description                                                                                                            |
 | ------------------ | -------- | ------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| v-model, value     | *        | String, Date, DateTime (luxon)  | new Date()          | Value                                                                                                                  |
+| v-model, value     | *        | String, Date, DateTime (luxon)  |                     | Value                                                                                                                  |
 | value-format       |          | String                          | yyyy-LL-dd HH:mm:ss | Value [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens)                         |
 | max-date           |          | String, Date, DateTime (luxon)  | null                | Max date                                                                                                               |
 | min-date           |          | String, Date, DateTime (luxon)  | null                | Min date                                                                                                               |
@@ -46,7 +46,7 @@ components: {
 | start-from-sunday  |          | Boolean                         | false               | Set Sunday as first day of week.                                                                                       |
 | seconds-picker     |          | Boolean                         | false               | Show second picker.                                                                                                    |
 | initial-view       |          | String                          | days                | Initial view: 'days', 'months', 'years'                                                                                |
-| main-button-class  |          | String                          | ''                  | Class for main button.                                                                                                 |
+| main-button-class  |          | String                          |                     | Class for main button.                                                                                                 |
 | disabled-dates     |          | Array                           | []                  | Array of disabled dates.                                                                                               |
 | highlighted        |          | Array                           | []                  | Array of highlighted dates. Example: [{ date: '2018-09-17', class: 'highlighted' }]                                    |
 
