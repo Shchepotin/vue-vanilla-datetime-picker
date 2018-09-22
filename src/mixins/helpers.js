@@ -145,7 +145,11 @@ export default {
         }).setLocale(locale).weekdayShort);
     },
     getDateTimeLocal() {
-      return DateTime.local();
+      return DateTime.fromObject({
+        minutes: 0,
+        hours: 0,
+        seconds: 0,
+      });
     }
   },
 };

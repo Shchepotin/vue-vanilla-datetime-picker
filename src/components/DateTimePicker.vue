@@ -5,9 +5,10 @@
         type="button"
         @click="toggle"
         class="datetime-picker__button"
+        :class="mainButtonClass"
       >
         <slot
-          v-if="value === '' || value === null || value === undefined"
+          v-if="isEmptyValue"
           name="choose-date"
         >Choose date</slot>
         <slot
@@ -33,10 +34,14 @@
           v-if="isDatePicker"
           @input="input"
           :value="date"
+          :is-empty-value="isEmptyValue"
+          :initial-view="initialView"
           :locale="locale"
           :start-from-sunday="startFromSunday"
           :min-date="parsedMinDate"
           :max-date="parsedMaxDate"
+          :disabled-dates="parsedDisabledDates"
+          :highlighted="parsedHighlighted"
         >
           <slot slot="months-prev" name="months-prev"></slot>
           <slot slot="months-next" name="months-next"></slot>
@@ -84,10 +89,14 @@
           v-if="isDatePicker"
           @input="input"
           :value="date"
+          :is-empty-value="isEmptyValue"
+          :initial-view="initialView"
           :locale="locale"
           :start-from-sunday="startFromSunday"
           :min-date="parsedMinDate"
           :max-date="parsedMaxDate"
+          :disabled-dates="parsedDisabledDates"
+          :highlighted="parsedHighlighted"
         >
           <slot name="months-prev" slot="months-prev"></slot>
           <slot slot="months-next" name="months-next"></slot>
@@ -145,9 +154,29 @@
           return null;
         },
       },
+      disabledDates: {
+        type: [Array],
+        default: () => {
+          return [];
+        },
+      },
+      highlighted: {
+        type: [Array],
+        default: () => {
+          return [];
+        },
+      },
       constraintsFormat: {
         type: [String],
         default: 'yyyy-LL-dd',
+      },
+      initialView: {
+        type: [String],
+        default: 'days',
+      },
+      mainButtonClass: {
+        type: [String],
+        default: '',
       },
       format: {
         type: [String],
@@ -196,7 +225,6 @@
     },
     computed: {
       date() {
-        // console.log(this.value, this.valueFormat, this.getDateTimeLocal());
         return this.toDateTime(this.value, this.valueFormat, this.getDateTimeLocal());
       },
       parsedMinDate() {
@@ -205,8 +233,24 @@
       parsedMaxDate() {
         return this.toDateTime(this.maxDate, this.constraintsFormat);
       },
+      parsedDisabledDates() {
+        return this.disabledDates.map((date) => {
+          return this.toDateTime(date, this.constraintsFormat);
+        });
+      },
+      parsedHighlighted() {
+        return this.highlighted.map((info) => {
+          return {
+            date: this.toDateTime(info.date, this.constraintsFormat),
+            class: info.class,
+          };
+        });
+      },
       formattedDateTime() {
         return this.date.setLocale(this.locale).toFormat(this.format);
+      },
+      isEmptyValue() {
+        return this.value === '' || this.value === null || this.value === undefined;
       },
     },
     methods: {
@@ -229,11 +273,6 @@
       togglePicker() {
         this.isDatePicker = !this.isDatePicker;
       },
-    },
-    created() {
-      // if (this.value === null || this.value === '' || this.value === undefined) {
-      //   this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
-      // }
     },
   };
 </script>

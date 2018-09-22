@@ -86,14 +86,14 @@
           v-for="(info, index) in rows"
           :key="index"
           class="date-picker__cell"
-          :class="{
-            'date-picker__cell--selected': info.selected,
+          :class="[{
+            'date-picker__cell--selected': info.selected && !isEmptyValue,
             'date-picker__day': info.date !== null,
             'date-picker__day--current': info.status === 'current',
             'date-picker__day--previous': info.status === 'previous',
             'date-picker__day--next': info.status === 'next',
             'date-picker__day--disabled': info.disabled,
-          }"
+          }, info.highlightedClass]"
           @click="!info.disabled && selectDay(info.date)"
         >
           {{ info.date !== null ? info.date.toFormat('dd') : '' }}
@@ -152,6 +152,14 @@
         type: [Boolean],
         default: false,
       },
+      isEmptyValue: {
+        type: [Boolean],
+        default: true,
+      },
+      initialView: {
+        type: [String],
+        default: 'days',
+      },
       locale: {
         type: [String],
         default: 'en',
@@ -166,18 +174,40 @@
           return null;
         },
       },
+      disabledDates: {
+        type: [Array],
+        default: () => {
+          return [];
+        },
+      },
+      highlighted: {
+        type: [Array],
+        default: () => {
+          return [];
+        },
+      },
     },
     mixins: [
       helpers,
     ],
     computed: {
       dateMatrixWithSelectedDate() {
-        return this.dateMatrix.map(rows => rows.map(info => ({
-          selected: info.date.toFormat('yyyy-LL-dd') === this.value.toFormat('yyyy-LL-dd'),
-          disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy-LL-dd') < info.date.toFormat('yyyy-LL-dd'))
-            || (this.minDate !== null && this.minDate.toFormat('yyyy-LL-dd') > info.date.toFormat('yyyy-LL-dd')),
-          ...info,
-        })));
+        return this.dateMatrix.map(rows => rows.map(info => {
+          let highlightedClass = this.highlighted.find((highlighted) => highlighted.date.toFormat('yyyy-LL-dd') === info.date.toFormat('yyyy-LL-dd'));
+
+          if (highlightedClass !== undefined) {
+            highlightedClass = highlightedClass.class;
+          }
+
+          return {
+            selected: info.date.toFormat('yyyy-LL-dd') === this.value.toFormat('yyyy-LL-dd'),
+            disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy-LL-dd') < info.date.toFormat('yyyy-LL-dd'))
+              || (this.minDate !== null && this.minDate.toFormat('yyyy-LL-dd') > info.date.toFormat('yyyy-LL-dd'))
+              || this.disabledDates.find((date) => date.toFormat('yyyy-LL-dd') === info.date.toFormat('yyyy-LL-dd')),
+            highlightedClass,
+            ...info,
+          };
+        }));
       },
       monthMatrixWithSelectedMonth() {
         return this.monthsMatrix.map(info => ({
@@ -205,7 +235,7 @@
         yearsMatrix: [],
         displayDate: this.value,
         nameWeekdays: [],
-        section: 'days',
+        section: this.initialView,
       };
     },
     methods: {
