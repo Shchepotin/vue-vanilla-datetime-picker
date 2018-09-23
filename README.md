@@ -17,13 +17,7 @@ npm install vue-vanilla-datetime-picker --save
 ```javascript
 import DateTimePicker from 'vue-vanilla-datetime-picker';
 
-// ...
-
-components: {
-  DateTimePicker: DateTimePicker
-}
-
-// ...
+Vue.component('date-time-picker', DateTimePicker);
 ```
 
 ```sass
