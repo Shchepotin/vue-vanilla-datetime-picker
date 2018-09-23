@@ -43,6 +43,9 @@ Vue.component('date-time-picker', DateTimePicker);
 | main-button-class  |          | String                          |                     | Class for main button.                                                                                                 |
 | disabled-dates     |          | Array                           | []                  | Array of disabled dates.                                                                                               |
 | highlighted        |          | Array                           | []                  | Array of highlighted dates. Example: [{ date: '2018-09-17', class: 'highlighted' }]                                    |
+| auto-close         |          | Boolean                         | false               | Close date picker after select date.                                                                                   |
+| clear-button       |          | Boolean                         | false               | Show "Clear" button.                                                                                                   |
+| today-button       |          | Boolean                         | false               | Show "Today" button.                                                                                                   |
 
 ### Slots:
 
@@ -64,6 +67,15 @@ Vue.component('date-time-picker', DateTimePicker);
 | minutes-down          | For minutes down button.                                          |
 | seconds-up            | For seconds up button.                                            |
 | seconds-down          | For seconds down button.                                          |
+| clear                 | For clear button.                                                 |
+| today                 | For today button.                                                 |
+
+### Events:
+
+| Name                  |
+| --------------------- |
+| close                 |
+| open                  |
 
 ## Development
 

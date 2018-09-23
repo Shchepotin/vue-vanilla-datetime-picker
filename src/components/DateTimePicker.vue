@@ -32,7 +32,7 @@
         </button>
         <date-picker
           v-if="isDatePicker"
-          @input="input"
+          @input="input($event, true)"
           :value="date"
           :is-empty-value="isEmptyValue"
           :initial-view="initialView"
@@ -71,6 +71,22 @@
           <slot slot="seconds-up" name="seconds-up"></slot>
           <slot slot="seconds-down" name="seconds-down"></slot>
         </time-picker>
+        <button
+          v-if="todayButton"
+          @click="today(true)"
+          type="button"
+          class="clear__button"
+        >
+          <slot name="today">Today</slot>
+        </button>
+        <button
+          v-if="clearButton"
+          @click="clear(true)"
+          type="button"
+          class="clear__button"
+        >
+          <slot name="clear">Clear</slot>
+        </button>
       </div>
     </template>
     <template v-else>
@@ -126,6 +142,22 @@
           <slot slot="seconds-up" name="seconds-up"></slot>
           <slot slot="seconds-down" name="seconds-down"></slot>
         </time-picker>
+        <button
+          v-if="todayButton"
+          @click="today"
+          type="button"
+          class="clear__button"
+        >
+          <slot name="today">Today</slot>
+        </button>
+        <button
+          v-if="clearButton"
+          @click="clear"
+          type="button"
+          class="clear__button"
+        >
+          <slot name="clear">Clear</slot>
+        </button>
       </div>
     </template>
   </div>
@@ -206,6 +238,18 @@
         type: [String],
         default: 'en',
       },
+      autoClose: {
+        type: [Boolean],
+        default: false,
+      },
+      clearButton: {
+        type: [Boolean],
+        default: false,
+      },
+      todayButton: {
+        type: [Boolean],
+        default: false,
+      },
     },
     components: {
       DatePicker,
@@ -254,7 +298,7 @@
       },
     },
     methods: {
-      input(value) {
+      input(value, checkAutoClose = false) {
         if ((typeof this.value) === 'string') {
           this.$emit('input', value.toFormat(this.valueFormat));
         } else if (this.value !== null && this.value.isValid === true) {
@@ -262,17 +306,45 @@
         } else {
           this.$emit('input', value.toJSDate());
         }
+
+        this.checkAutoClose(checkAutoClose);
       },
       toggle() {
         this.isShow = !this.isShow;
+
+        if (this.isShow) {
+          this.$emit('open');
+        }
       },
       hide() {
         this.isDatePicker = true;
         this.isShow = false;
+
+        this.$emit('close');
       },
       togglePicker() {
         this.isDatePicker = !this.isDatePicker;
       },
+      today(checkAutoClose = false) {
+        if ((typeof this.value) === 'string') {
+          this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
+        } else if (this.value !== null && this.value.isValid === true) {
+          this.$emit('input', this.getDateTimeLocal());
+        } else {
+          this.$emit('input', this.getDateTimeLocal().toJSDate());
+        }
+
+        this.checkAutoClose(checkAutoClose);
+      },
+      clear(checkAutoClose = false) {
+        this.$emit('input', '');
+        this.checkAutoClose(checkAutoClose);
+      },
+      checkAutoClose(checkAutoClose = false) {
+        if (checkAutoClose && this.autoClose) {
+          this.hide();
+        }
+      }
     },
   };
 </script>
@@ -308,5 +380,10 @@
   .date-picker__button {
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  .clear__button, .today__button {
+    width: 100%;
+    margin-top: 10px;
   }
 </style>
