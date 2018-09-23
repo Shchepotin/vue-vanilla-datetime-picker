@@ -75,7 +75,7 @@
           v-if="todayButton"
           @click="today(true)"
           type="button"
-          class="clear__button"
+          class="today__button"
         >
           <slot name="today">Today</slot>
         </button>
@@ -146,7 +146,7 @@
           v-if="todayButton"
           @click="today"
           type="button"
-          class="clear__button"
+          class="today__button"
         >
           <slot name="today">Today</slot>
         </button>
