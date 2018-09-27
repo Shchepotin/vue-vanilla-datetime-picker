@@ -1,6 +1,6 @@
 {
   "name": "vue-vanilla-datetime-picker",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -33,7 +33,9 @@
     "@vue/cli-plugin-babel": "^3.0.0",
     "@vue/cli-plugin-eslint": "^3.0.0",
     "@vue/cli-service": "^3.0.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   },
   "eslintConfig": {
     "root": true,
@@ -42,9 +44,28 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "airbnb-base"
     ],
-    "rules": {},
+    "rules": {
+      "no-param-reassign": 0,
+      "no-multi-assign": 0,
+      "guard-for-in": 0,
+      "no-underscore-dangle": 0,
+      "max-len": 0,
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

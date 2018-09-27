@@ -1,17 +1,17 @@
-import {DateTime} from 'luxon';
+import { DateTime } from 'luxon';
 
 export default {
   methods: {
     generateSecondsMatrix(date) {
-      return Array.from({length: 60}, (elColumn, columnIndex) => DateTime
+      return Array.from({ length: 60 }, (elColumn, columnIndex) => DateTime
         .local(date.year, date.month, date.day, date.hour, date.minute, columnIndex));
     },
     generateMinutesMatrix(date) {
-      return Array.from({length: 60}, (elColumn, columnIndex) => DateTime
+      return Array.from({ length: 60 }, (elColumn, columnIndex) => DateTime
         .local(date.year, date.month, date.day, date.hour, columnIndex, date.second));
     },
     generateHoursMatrix(date) {
-      return Array.from({length: 24}, (elColumn, columnIndex) => DateTime
+      return Array.from({ length: 24 }, (elColumn, columnIndex) => DateTime
         .local(date.year, date.month, date.day, columnIndex, date.minute, date.second));
     },
     generateDateMatrix(selectedDate, startFromSunday = false) {
@@ -29,8 +29,8 @@ export default {
       const previousMonth = this.getPreviousMonth(selectedMonth);
       const nextMonth = this.getNextMonth(selectedMonth);
 
-      return Array.from({length: 6}, (elColumn, columnIndex) => Array
-        .from({length: 7}, (elRow, rowIndex) => {
+      return Array.from({ length: 6 }, (elColumn, columnIndex) => Array
+        .from({ length: 7 }, (elRow, rowIndex) => {
           const day = {
             status: null,
             date: null,
@@ -73,7 +73,7 @@ export default {
         }));
     },
     generateMonthsMatrix(date, locale = 'en') {
-      return Array.from({length: 12}, (elColumn, columnIndex) => {
+      return Array.from({ length: 12 }, (elColumn, columnIndex) => {
         const dateTime = DateTime.local(
           date.year, columnIndex + 1, date.day,
           date.hour, date.minute, date.second,
@@ -87,7 +87,7 @@ export default {
       });
     },
     generateYearsMatrix(date) {
-      return Array.from({length: 10}, (elColumn, columnIndex) => {
+      return Array.from({ length: 10 }, (elColumn, columnIndex) => {
         const dateTime = DateTime.local(
           (date.year - (date.year % 10)) + columnIndex, date.month, date.day,
           date.hour, date.minute, date.second,
@@ -101,27 +101,27 @@ export default {
     },
     getPreviousMonth(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
-        .minus({month: 1});
+        .minus({ month: 1 });
     },
     getNextMonth(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
-        .plus({month: 1});
+        .plus({ month: 1 });
     },
     getPreviousDecade(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
-        .minus({year: 10});
+        .minus({ year: 10 });
     },
     getNextDecade(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
-        .plus({year: 10});
+        .plus({ year: 10 });
     },
     getPreviousYear(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
-        .minus({year: 1});
+        .minus({ year: 1 });
     },
     getNextYear(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
-        .plus({year: 1});
+        .plus({ year: 1 });
     },
     toDateTime(value, format, defaultDate = null) {
       let date = defaultDate;
@@ -137,12 +137,22 @@ export default {
       return date;
     },
     getShortNameWeekdays(startFromSunday = false, locale = 'en') {
-      return Array.from({length: 7}, (elColumn, columnIndex) => DateTime
-        .fromObject({
-          weekday: startFromSunday
-            ? (columnIndex === 0
-              ? 7 : columnIndex) : columnIndex + 1
-        }).setLocale(locale).weekdayShort);
+      return Array.from({ length: 7 }, (elColumn, columnIndex) => {
+        let weekday = columnIndex + 1;
+
+        if (startFromSunday) {
+          if (columnIndex === 0) {
+            weekday = 7;
+          } else {
+            weekday = columnIndex;
+          }
+        }
+
+        return DateTime
+          .fromObject({
+            weekday,
+          }).setLocale(locale).weekdayShort;
+      });
     },
     getDateTimeLocal() {
       return DateTime.fromObject({
@@ -150,6 +160,6 @@ export default {
         hours: 0,
         seconds: 0,
       });
-    }
+    },
   },
 };

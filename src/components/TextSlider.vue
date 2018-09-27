@@ -21,47 +21,47 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      value: {
-        default: null,
-      },
-      options: {
-        default: () => [],
-      },
+export default {
+  props: {
+    value: {
+      default: null,
     },
-    computed: {
-      selectedValue() {
-        return this.options.filter(element => element.key === this.value.key)[0];
-      },
+    options: {
+      default: () => [],
     },
-    methods: {
-      previous() {
-        const newValue = this.options.filter((element, index) => this.options[index - 1]
+  },
+  computed: {
+    selectedValue() {
+      return this.options.filter(element => element.key === this.value.key)[0];
+    },
+  },
+  methods: {
+    previous() {
+      const newValue = this.options.filter((element, index) => this.options[index - 1]
           && this.options[index - 1].key === this.value.key)[0];
 
-        if (newValue !== undefined) {
-          this.$emit('input', newValue);
-        } else {
-          this.$emit('input', this.options[0]);
-        }
-      },
-      next() {
-        const newValue = this.options.filter((element, index) => this.options[index + 1]
+      if (newValue !== undefined) {
+        this.$emit('input', newValue);
+      } else {
+        this.$emit('input', this.options[0]);
+      }
+    },
+    next() {
+      const newValue = this.options.filter((element, index) => this.options[index + 1]
           && this.options[index + 1].key === this.value.key)[0];
 
-        if (newValue !== undefined) {
-          this.$emit('input', newValue);
-        } else {
-          this.$emit('input', this.options[this.options.length - 1]);
-        }
-      },
+      if (newValue !== undefined) {
+        this.$emit('input', newValue);
+      } else {
+        this.$emit('input', this.options[this.options.length - 1]);
+      }
     },
-  };
+  },
+};
 </script>
 
 <style>
-  .text-slider__value {
-    text-align: center;
-  }
+.text-slider__value {
+  text-align: center;
+}
 </style>
