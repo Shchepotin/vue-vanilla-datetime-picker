@@ -45,6 +45,7 @@ Vue.component('date-time-picker', DateTimePicker);
 | highlighted        |          | Array                           | []                  | Array of highlighted dates. Example: [{ date: '2018-09-17', class: 'highlighted' }]                                    |
 | auto-close         |          | Boolean                         | false               | Close date picker after select date.                                                                                   |
 | clear-button       |          | Boolean                         | false               | Show "Clear" button.                                                                                                   |
+| close-button       |          | Boolean                         | false               | Show "Close" button.                                                                                                   |
 | today-button       |          | Boolean                         | false               | Show "Today" button.                                                                                                   |
 
 ### Slots:
@@ -68,6 +69,7 @@ Vue.component('date-time-picker', DateTimePicker);
 | seconds-up            | For seconds up button.                                            |
 | seconds-down          | For seconds down button.                                          |
 | clear                 | For clear button.                                                 |
+| close                 | For close button.                                                 |
 | today                 | For today button.                                                 |
 
 ### Events:

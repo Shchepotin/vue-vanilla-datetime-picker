@@ -127,6 +127,14 @@
         >
           <slot name="clear">Clear</slot>
         </button>
+        <button
+          v-if="closeButton"
+          @click="close"
+          type="button"
+          class="close__button"
+        >
+          <slot name="close">Close</slot>
+        </button>
       </div>
     </template>
     <template v-else>
@@ -234,6 +242,14 @@
         >
           <slot name="clear">Clear</slot>
         </button>
+        <button
+          v-if="closeButton"
+          @click="close"
+          type="button"
+          class="close__button"
+        >
+          <slot name="close">Close</slot>
+        </button>
       </div>
     </template>
   </div>
@@ -315,6 +331,10 @@ export default {
       default: false,
     },
     todayButton: {
+      type: [Boolean],
+      default: false,
+    },
+    closeButton: {
       type: [Boolean],
       default: false,
     },
@@ -409,6 +429,9 @@ export default {
         this.hide();
       }
     },
+    close() {
+      this.hide();
+    },
   },
 };
 </script>
@@ -446,7 +469,7 @@ export default {
   margin-bottom: 10px;
 }
 
-.clear__button, .today__button {
+.clear__button, .today__button, .close__button {
   width: 100%;
   margin-top: 10px;
 }
