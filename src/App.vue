@@ -2,6 +2,8 @@
   <div id="app">
     <DateTimePicker
       v-model="date"
+      value-type="String"
+      :empty-value="null"
     />
 
     <DateTimePicker
@@ -23,7 +25,7 @@ export default {
   },
   data() {
     return {
-      date: '',
+      date: null,
     };
   },
 };

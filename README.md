@@ -6,7 +6,7 @@ See demo [here](https://codepen.io/Shchepotin/pen/wEQyQx?editors=1010)
 
 ## Requirements
 
-- Vue.js `^2.0.0`
+- Vue.js `^2.5.17`
 
 ## Usage
 
@@ -47,6 +47,8 @@ Vue.component('date-time-picker', DateTimePicker);
 | clear-button       |          | Boolean                         | false               | Show "Clear" button.                                                                                                   |
 | close-button       |          | Boolean                         | false               | Show "Close" button.                                                                                                   |
 | today-button       |          | Boolean                         | false               | Show "Today" button.                                                                                                   |
+| value-type         |          | String                          | Auto                | Set value type. Types: 'Auto', 'String', 'Date', 'Luxon'.                                                              |
+| empty-value        |          | Any                             | ''                  | Set empty value on clear button.                                                                                       |
 
 ### Slots:
 

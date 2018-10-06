@@ -302,6 +302,13 @@ export default {
       type: [String],
       default: 'yyyy-LL-dd HH:mm:ss',
     },
+    valueType: {
+      type: [String],
+      default: 'Auto',
+    },
+    emptyValue: {
+      default: '',
+    },
     inline: {
       type: [Boolean],
       default: false,
@@ -378,16 +385,24 @@ export default {
       return this.date.setLocale(this.locale).toFormat(this.format);
     },
     isEmptyValue() {
-      return this.value === '' || this.value === null || this.value === undefined;
+      return this.value === '' || this.value === null || this.value === undefined || this.value === this.emptyValue;
     },
   },
   methods: {
     input(value, checkAutoClose = false) {
-      if ((typeof this.value) === 'string') {
+      if (this.valueType === 'Auto') {
+        if ((typeof this.value) === 'string') {
+          this.$emit('input', value.toFormat(this.valueFormat));
+        } else if (this.value !== null && this.value.isValid === true) {
+          this.$emit('input', value);
+        } else {
+          this.$emit('input', value.toJSDate());
+        }
+      } else if (this.valueType === 'String') {
         this.$emit('input', value.toFormat(this.valueFormat));
-      } else if (this.value !== null && this.value.isValid === true) {
+      } else if (this.valueType === 'Luxon') {
         this.$emit('input', value);
-      } else {
+      } else if (this.valueType === 'Date') {
         this.$emit('input', value.toJSDate());
       }
 
@@ -410,18 +425,26 @@ export default {
       this.isDatePicker = !this.isDatePicker;
     },
     today(checkAutoClose = false) {
-      if ((typeof this.value) === 'string') {
+      if (this.valueType === 'Auto') {
+        if ((typeof this.value) === 'string') {
+          this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
+        } else if (this.value !== null && this.value.isValid === true) {
+          this.$emit('input', this.getDateTimeLocal());
+        } else {
+          this.$emit('input', this.getDateTimeLocal().toJSDate());
+        }
+      } else if (this.valueType === 'String') {
         this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
-      } else if (this.value !== null && this.value.isValid === true) {
+      } else if (this.valueType === 'Luxon') {
         this.$emit('input', this.getDateTimeLocal());
-      } else {
+      } else if (this.valueType === 'Date') {
         this.$emit('input', this.getDateTimeLocal().toJSDate());
       }
 
       this.checkAutoClose(checkAutoClose);
     },
     clear(checkAutoClose = false) {
-      this.$emit('input', '');
+      this.$emit('input', this.emptyValue);
       this.checkAutoClose(checkAutoClose);
     },
     checkAutoClose(checkAutoClose = false) {
