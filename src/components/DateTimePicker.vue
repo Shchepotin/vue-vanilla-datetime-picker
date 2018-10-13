@@ -84,6 +84,7 @@
           v-if="!isDatePicker"
           @input="input"
           :value="date"
+          :minute-step="minuteStep"
           :seconds-picker="secondsPicker"
         >
           <slot
@@ -199,6 +200,7 @@
           v-if="!isDatePicker"
           @input="input"
           :value="date"
+          :minute-step="minuteStep"
           :seconds-picker="secondsPicker"
         >
           <slot
@@ -308,6 +310,10 @@ export default {
     },
     emptyValue: {
       default: '',
+    },
+    minuteStep: {
+      type: [Number],
+      default: 1,
     },
     inline: {
       type: [Boolean],

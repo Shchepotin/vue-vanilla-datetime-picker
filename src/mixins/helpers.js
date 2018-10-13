@@ -6,9 +6,9 @@ export default {
       return Array.from({ length: 60 }, (elColumn, columnIndex) => DateTime
         .local(date.year, date.month, date.day, date.hour, date.minute, columnIndex));
     },
-    generateMinutesMatrix(date) {
-      return Array.from({ length: 60 }, (elColumn, columnIndex) => DateTime
-        .local(date.year, date.month, date.day, date.hour, columnIndex, date.second));
+    generateMinutesMatrix(date, step = 1) {
+      return Array.from({ length: Math.ceil(60 / step) }, (elColumn, columnIndex) => DateTime
+        .local(date.year, date.month, date.day, date.hour, columnIndex * step, date.second));
     },
     generateHoursMatrix(date) {
       return Array.from({ length: 24 }, (elColumn, columnIndex) => DateTime

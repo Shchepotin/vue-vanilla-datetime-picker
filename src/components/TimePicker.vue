@@ -56,6 +56,10 @@ export default {
       required: false,
       default: '',
     },
+    minuteStep: {
+      type: [Number],
+      default: 1,
+    },
     secondsPicker: {
       type: [Boolean],
       default: false,
@@ -76,7 +80,7 @@ export default {
       }));
     },
     minutes() {
-      return this.generateMinutesMatrix(this.value).map(element => ({
+      return this.generateMinutesMatrix(this.value, this.minuteStep).map(element => ({
         key: element.toFormat('mm'),
         displayValue: element.toFormat('mm'),
         originalValue: element,

@@ -38,6 +38,7 @@ Vue.component('date-time-picker', DateTimePicker);
 | format             |          | String                          | yyyy-LL-dd HH:mm    | Display [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens).                      |
 | time-picker        |          | Boolean                         | true                | Show time picker.                                                                                                      |
 | start-from-sunday  |          | Boolean                         | false               | Set Sunday as first day of week.                                                                                       |
+| minute-step        |          | Number                          | 1                   | Set step for minute.                                                                                                   |
 | seconds-picker     |          | Boolean                         | false               | Show second picker.                                                                                                    |
 | initial-view       |          | String                          | days                | Initial view: 'days', 'months', 'years'                                                                                |
 | main-button-class  |          | String                          |                     | Class for main button.                                                                                                 |
