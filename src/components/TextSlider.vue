@@ -1,17 +1,17 @@
 <template>
   <div class="text-slider">
     <button
-      @click="previous"
+      @click="next"
       type="button"
       class="text-slider__button-previous"
     >
       <slot name="up">&uarr;</slot>
     </button>
     <div class="text-slider__value">
-      {{ selectedValue.displayValue }}
+      {{ selectedValue ? selectedValue.displayValue : value.displayValue }}
     </div>
     <button
-      @click="next"
+      @click="previous"
       type="button"
       class="text-slider__button-next"
     >
@@ -37,23 +37,32 @@ export default {
   },
   methods: {
     previous() {
-      const newValue = this.options.filter((element, index) => this.options[index - 1]
-          && this.options[index - 1].key === this.value.key)[0];
+      let newValue = this.options.filter((element, index) => this.options[index + 1]
+        && this.options[index + 1].key === this.value.key)[0];
 
-      if (newValue !== undefined) {
-        this.$emit('input', newValue);
-      } else {
-        this.$emit('input', this.options[0]);
+      if (newValue === undefined) {
+        newValue = this.options.filter(element => element.key < this.value.key);
+        newValue = newValue[newValue.length - 1];
       }
-    },
-    next() {
-      const newValue = this.options.filter((element, index) => this.options[index + 1]
-          && this.options[index + 1].key === this.value.key)[0];
 
       if (newValue !== undefined) {
         this.$emit('input', newValue);
       } else {
         this.$emit('input', this.options[this.options.length - 1]);
+      }
+    },
+    next() {
+      let [newValue] = this.options.filter((element, index) => this.options[index - 1]
+        && this.options[index - 1].key === this.value.key);
+
+      if (newValue === undefined) {
+        [newValue] = this.options.filter(element => element.key > this.value.key);
+      }
+
+      if (newValue !== undefined) {
+        this.$emit('input', newValue);
+      } else {
+        this.$emit('input', this.options[0]);
       }
     },
   },
