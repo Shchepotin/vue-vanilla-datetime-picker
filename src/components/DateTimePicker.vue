@@ -5,7 +5,10 @@
         type="button"
         @click="toggle"
         class="datetime-picker__button"
-        :class="mainButtonClass"
+        :class="[{
+          'datetime-picker__button--disabled': disabled,
+        }, mainButtonClass]"
+        :disabled="disabled"
       >
         <slot
           v-if="isEmptyValue"
@@ -35,7 +38,7 @@
           <slot name="date">🗓</slot>
         </button>
         <date-picker
-          v-if="isDatePicker"
+          v-if="isDatePicker && !onlyTimePicker"
           @input="input($event, true)"
           :value="date"
           :is-empty-value="isEmptyValue"
@@ -46,6 +49,7 @@
           :max-date="parsedMaxDate"
           :disabled-dates="parsedDisabledDates"
           :highlighted="parsedHighlighted"
+          @change-view="changeView"
         >
           <slot
             slot="months-prev"
@@ -73,7 +77,7 @@
           />
         </date-picker>
         <button
-          v-if="isDatePicker && timePicker"
+          v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
           @click="togglePicker"
           type="button"
           class="time-picker__button"
@@ -81,7 +85,7 @@
           <slot name="time">🕘</slot>
         </button>
         <time-picker
-          v-if="!isDatePicker"
+          v-if="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
           @input="input"
           :value="date"
           :minute-step="minuteStep"
@@ -141,6 +145,9 @@
     <template v-else>
       <div
         class="datetime-picker-inline"
+        :class="{
+          'datetime-picker-inline--disabled': disabled,
+        }"
       >
         <button
           v-if="!isDatePicker"
@@ -151,7 +158,7 @@
           <slot name="date">🗓</slot>
         </button>
         <date-picker
-          v-if="isDatePicker"
+          v-if="isDatePicker && !onlyTimePicker"
           @input="input"
           :value="date"
           :is-empty-value="isEmptyValue"
@@ -162,6 +169,7 @@
           :max-date="parsedMaxDate"
           :disabled-dates="parsedDisabledDates"
           :highlighted="parsedHighlighted"
+          @change-view="changeView"
         >
           <slot
             name="months-prev"
@@ -189,7 +197,7 @@
           />
         </date-picker>
         <button
-          v-if="isDatePicker && timePicker"
+          v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
           @click="togglePicker"
           type="button"
           class="time-picker__button"
@@ -197,7 +205,7 @@
           <slot name="time">🕘</slot>
         </button>
         <time-picker
-          v-if="!isDatePicker"
+          v-if="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
           @input="input"
           :value="date"
           :minute-step="minuteStep"
@@ -300,6 +308,10 @@ export default {
       type: [String],
       default: 'yyyy-LL-dd HH:mm',
     },
+    disabled: {
+      type: [Boolean],
+      default: false,
+    },
     valueFormat: {
       type: [String],
       default: 'yyyy-LL-dd HH:mm:ss',
@@ -351,6 +363,14 @@ export default {
       type: [Boolean],
       default: false,
     },
+    noToggleTimePicker: {
+      type: [Boolean],
+      default: false,
+    },
+    onlyTimePicker: {
+      type: [Boolean],
+      default: false,
+    },
   },
   components: {
     DatePicker,
@@ -366,6 +386,7 @@ export default {
     return {
       isShow: false,
       isDatePicker: true,
+      isShowTimePicker: true,
     };
   },
   computed: {
@@ -449,6 +470,13 @@ export default {
 
       this.checkAutoClose(checkAutoClose);
     },
+    changeView(mode) {
+      if (mode === 'days') {
+        this.isShowTimePicker = true;
+      } else {
+        this.isShowTimePicker = false;
+      }
+    },
     clear(checkAutoClose = false) {
       this.$emit('input', this.emptyValue);
       this.checkAutoClose(checkAutoClose);
@@ -481,12 +509,26 @@ export default {
 }
 
 .datetime-picker-inline {
-  position: static;
+  position: relative;
   width: 320px;
   background: #ffffff;
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid #808080;
+}
+
+.datetime-picker-inline--disabled {
+  opacity: .7;
+}
+
+.datetime-picker-inline--disabled:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .time-picker__button {

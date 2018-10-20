@@ -26,30 +26,33 @@ Vue.component('date-time-picker', DateTimePicker);
 
 ### Props:
 
-| Name               | Required | Type                            | Default             | Description                                                                                                            |
-| ------------------ | -------- | ------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| v-model, value     | *        | String, Date, DateTime (luxon)  |                     | Value                                                                                                                  |
-| value-format       |          | String                          | yyyy-LL-dd HH:mm:ss | Value [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens)                         |
-| max-date           |          | String, Date, DateTime (luxon)  | null                | Max date                                                                                                               |
-| min-date           |          | String, Date, DateTime (luxon)  | null                | Min date                                                                                                               |
-| constraints-format |          | String                          | yyyy-LL-dd          | Constraints [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens)                   |
-| locale             |          | String                          | en                  | Set [locale](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).                      |
-| inline             |          | Boolean                         | false               | Enable inline mode.                                                                                                    |
-| format             |          | String                          | yyyy-LL-dd HH:mm    | Display [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens).                      |
-| time-picker        |          | Boolean                         | true                | Show time picker.                                                                                                      |
-| start-from-sunday  |          | Boolean                         | false               | Set Sunday as first day of week.                                                                                       |
-| minute-step        |          | Number                          | 1                   | Set step for minute.                                                                                                   |
-| seconds-picker     |          | Boolean                         | false               | Show second picker.                                                                                                    |
-| initial-view       |          | String                          | days                | Initial view: 'days', 'months', 'years'                                                                                |
-| main-button-class  |          | String                          |                     | Class for main button.                                                                                                 |
-| disabled-dates     |          | Array                           | []                  | Array of disabled dates.                                                                                               |
-| highlighted        |          | Array                           | []                  | Array of highlighted dates. Example: [{ date: '2018-09-17', class: 'highlighted' }]                                    |
-| auto-close         |          | Boolean                         | false               | Close date picker after select date.                                                                                   |
-| clear-button       |          | Boolean                         | false               | Show "Clear" button.                                                                                                   |
-| close-button       |          | Boolean                         | false               | Show "Close" button.                                                                                                   |
-| today-button       |          | Boolean                         | false               | Show "Today" button.                                                                                                   |
-| value-type         |          | String                          | Auto                | Set value type. Types: 'Auto', 'String', 'Date', 'Luxon'.                                                              |
-| empty-value        |          | Any                             | ''                  | Set empty value on clear button.                                                                                       |
+| Name                  | Required | Type                            | Default             | Description                                                                                                            |
+| --------------------- | -------- | ------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| v-model, value        | *        | String, Date, DateTime (luxon)  |                     | Value                                                                                                                  |
+| value-format          |          | String                          | yyyy-LL-dd HH:mm:ss | Value [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens)                         |
+| max-date              |          | String, Date, DateTime (luxon)  | null                | Max date                                                                                                               |
+| min-date              |          | String, Date, DateTime (luxon)  | null                | Min date                                                                                                               |
+| constraints-format    |          | String                          | yyyy-LL-dd          | Constraints [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens)                   |
+| locale                |          | String                          | en                  | Set [locale](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).                      |
+| inline                |          | Boolean                         | false               | Enable inline mode.                                                                                                    |
+| disabled              |          | Boolean                         | false               | Disable datetime picker.                                                                                               |
+| format                |          | String                          | yyyy-LL-dd HH:mm    | Display [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens).                      |
+| time-picker           |          | Boolean                         | true                | Show time picker.                                                                                                      |
+| no-toggle-time-picker |          | Boolean                         | false               | No toggle time picker button.                                                                                          |
+| only-time-picker      |          | Boolean                         | false               | Show only time picker.                                                                                                 |
+| start-from-sunday     |          | Boolean                         | false               | Set Sunday as first day of week.                                                                                       |
+| minute-step           |          | Number                          | 1                   | Set step for minute.                                                                                                   |
+| seconds-picker        |          | Boolean                         | false               | Show second picker.                                                                                                    |
+| initial-view          |          | String                          | days                | Initial view: 'days', 'months', 'years'                                                                                |
+| main-button-class     |          | String                          |                     | Class for main button.                                                                                                 |
+| disabled-dates        |          | Array                           | []                  | Array of disabled dates.                                                                                               |
+| highlighted           |          | Array                           | []                  | Array of highlighted dates. Example: [{ date: '2018-09-17', class: 'highlighted' }]                                    |
+| auto-close            |          | Boolean                         | false               | Close date picker after select date.                                                                                   |
+| clear-button          |          | Boolean                         | false               | Show "Clear" button.                                                                                                   |
+| close-button          |          | Boolean                         | false               | Show "Close" button.                                                                                                   |
+| today-button          |          | Boolean                         | false               | Show "Today" button.                                                                                                   |
+| value-type            |          | String                          | Auto                | Set value type. Types: 'Auto', 'String', 'Date', 'Luxon'.                                                              |
+| empty-value           |          | Any                             | ''                  | Set empty value for clear button.                                                                                      |
 
 ### Slots:
 

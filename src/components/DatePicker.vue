@@ -280,24 +280,28 @@ export default {
       this.yearsMatrix = this.generateYearsMatrix(this.displayDate);
     },
   },
-  created() {
-    this.nameWeekdays = this.getShortNameWeekdays(this.startFromSunday, this.locale);
-    this.dateMatrix = this.generateDateMatrix(this.displayDate, this.startFromSunday);
-    this.monthsMatrix = this.generateMonthsMatrix(this.displayDate, this.locale);
-    this.yearsMatrix = this.generateYearsMatrix(this.displayDate);
-  },
   watch: {
     value: {
-      handler() {
-        this.displayDate = this.value;
+      handler(value) {
+        this.displayDate = value;
         this.dateMatrix = this.generateDateMatrix(this.displayDate, this.startFromSunday);
         this.monthsMatrix = this.generateMonthsMatrix(this.displayDate, this.locale);
         this.yearsMatrix = this.generateYearsMatrix(this.displayDate);
       },
+      immediate: true,
       deep: true,
     },
-    locale() {
-      this.nameWeekdays = this.getShortNameWeekdays(this.startFromSunday, this.locale);
+    locale: {
+      handler(value) {
+        this.nameWeekdays = this.getShortNameWeekdays(this.startFromSunday, value);
+      },
+      immediate: true,
+    },
+    section: {
+      immediate: true,
+      handler(value) {
+        this.$emit('change-view', value);
+      },
     },
   },
 };
