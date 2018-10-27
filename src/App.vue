@@ -4,6 +4,7 @@
       v-model="date"
       value-type="String"
       :empty-value="null"
+      :hour-time="12"
     />
 
     <DateTimePicker

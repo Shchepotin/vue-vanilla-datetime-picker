@@ -43,6 +43,21 @@
         name="seconds-down"
       />
     </text-slider>
+    <text-slider
+      v-if="hourTime === 12"
+      :value="selectedHour"
+      @input="input"
+      :options="meridiems"
+    >
+      <slot
+        slot="up"
+        name="meridiems-up"
+      />
+      <slot
+        slot="down"
+        name="meridiems-down"
+      />
+    </text-slider>
   </div>
 </template>
 
@@ -64,6 +79,10 @@ export default {
       type: [Boolean],
       default: false,
     },
+    hourTime: {
+      type: [Number],
+      default: 24,
+    },
   },
   components: {
     TextSlider,
@@ -75,7 +94,7 @@ export default {
     hours() {
       return this.generateHoursMatrix(this.value).map(element => ({
         key: element.toFormat('HH'),
-        displayValue: element.toFormat('HH'),
+        displayValue: element.toFormat(this.hourTime === 12 ? 'hh' : 'HH'),
         originalValue: element,
       }));
     },
@@ -92,6 +111,14 @@ export default {
         displayValue: element.toFormat('ss'),
         originalValue: element,
       }));
+    },
+    meridiems() {
+      return this.hours
+        .filter(element => element.originalValue.toFormat('h') === this.selectedHour.originalValue.toFormat('h'))
+        .map(element => ({
+          ...element,
+          displayValue: element.originalValue.toFormat('a'),
+        }));
     },
     selectedHour() {
       return {

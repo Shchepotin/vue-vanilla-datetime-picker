@@ -90,6 +90,7 @@
           :value="date"
           :minute-step="minuteStep"
           :seconds-picker="secondsPicker"
+          :hour-time="hourTime"
         >
           <slot
             slot="hours-up"
@@ -113,6 +114,14 @@
           />
           <slot
             slot="seconds-down"
+            name="seconds-down"
+          />
+          <slot
+            slot="meridiems-up"
+            name="seconds-up"
+          />
+          <slot
+            slot="meridiems-down"
             name="seconds-down"
           />
         </time-picker>
@@ -210,6 +219,7 @@
           :value="date"
           :minute-step="minuteStep"
           :seconds-picker="secondsPicker"
+          :hour-time="hourTime"
         >
           <slot
             slot="hours-up"
@@ -233,6 +243,14 @@
           />
           <slot
             slot="seconds-down"
+            name="seconds-down"
+          />
+          <slot
+            slot="meridiems-up"
+            name="seconds-up"
+          />
+          <slot
+            slot="meridiems-down"
             name="seconds-down"
           />
         </time-picker>
@@ -334,6 +352,10 @@ export default {
     timePicker: {
       type: [Boolean],
       default: true,
+    },
+    hourTime: {
+      type: [Number],
+      default: 24,
     },
     startFromSunday: {
       type: [Boolean],

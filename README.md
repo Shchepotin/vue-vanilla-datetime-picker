@@ -38,6 +38,7 @@ Vue.component('date-time-picker', DateTimePicker);
 | disabled              |          | Boolean                         | false               | Disable datetime picker.                                                                                               |
 | format                |          | String                          | yyyy-LL-dd HH:mm    | Display [format](https://github.com/moment/luxon/blob/master/docs/formatting.md#table-of-tokens).                      |
 | time-picker           |          | Boolean                         | true                | Show time picker.                                                                                                      |
+| hour-time             |          | Number                          | 24                  | Hour in 12/24-hour time. Values: '12', '24'.                                                                           |
 | no-toggle-time-picker |          | Boolean                         | false               | No toggle time picker button.                                                                                          |
 | only-time-picker      |          | Boolean                         | false               | Show only time picker.                                                                                                 |
 | start-from-sunday     |          | Boolean                         | false               | Set Sunday as first day of week.                                                                                       |
@@ -74,6 +75,8 @@ Vue.component('date-time-picker', DateTimePicker);
 | minutes-down          | For minutes down button.                                          |
 | seconds-up            | For seconds up button.                                            |
 | seconds-down          | For seconds down button.                                          |
+| meridiems-up          | For meridiems up button.                                          |
+| meridiems-down        | For meridiems down button.                                        |
 | clear                 | For clear button.                                                 |
 | close                 | For close button.                                                 |
 | today                 | For today button.                                                 |
