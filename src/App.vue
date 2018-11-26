@@ -5,6 +5,9 @@
       value-type="String"
       :empty-value="null"
       :hour-time="12"
+      @change-month="changeMonth"
+      @change-year="changeYear"
+      @change-decade="changeDecade"
     />
 
     <DateTimePicker
@@ -28,6 +31,9 @@
       :inline="true"
       :min-date="'2018-08-03'"
       :max-date="'2018-12-01'"
+      @change-month="changeMonth"
+      @change-year="changeYear"
+      @change-decade="changeDecade"
     />
 
     <DateTimePicker
@@ -59,6 +65,17 @@ export default {
     return {
       date: '',
     };
+  },
+  methods: {
+    changeMonth(value) {
+      console.log('month', value);
+    },
+    changeYear(value) {
+      console.log('year', value);
+    },
+    changeDecade(value) {
+      console.log('decade', value);
+    },
   },
 };
 </script>

@@ -1,285 +1,162 @@
 <template>
   <div class="datetime-picker">
-    <template v-if="!inline">
+    <button
+      v-if="!inline"
+      type="button"
+      @click="toggle"
+      class="datetime-picker__button"
+      :class="[{
+        'datetime-picker__button--disabled': disabled,
+      }, mainButtonClass]"
+      :disabled="disabled"
+    >
+      <slot
+        v-if="isEmptyValue"
+        name="choose-date"
+      >
+        Choose date
+      </slot>
+      <slot
+        v-else
+        name="formatted-datetime"
+        :formatted-datetime="formattedDateTime"
+      >
+        {{ formattedDateTime }}
+      </slot>
+    </button>
+    <div
+      v-if="isShow || inline"
+      v-click-outside="hide"
+      :class="{
+        'datetime-picker-main': !inline,
+        'datetime-picker-inline': inline,
+        'datetime-picker-inline--disabled': disabled && inline,
+      }"
+    >
       <button
+        v-if="!isDatePicker"
+        @click="togglePicker"
         type="button"
-        @click="toggle"
-        class="datetime-picker__button"
-        :class="[{
-          'datetime-picker__button--disabled': disabled,
-        }, mainButtonClass]"
-        :disabled="disabled"
+        class="date-picker__button"
       >
-        <slot
-          v-if="isEmptyValue"
-          name="choose-date"
-        >
-          Choose date
-        </slot>
-        <slot
-          v-else
-          name="formatted-datetime"
-          :formatted-datetime="formattedDateTime"
-        >
-          {{ formattedDateTime }}
-        </slot>
+        <slot name="date">🗓</slot>
       </button>
-      <div
-        v-if="isShow"
-        v-click-outside="hide"
-        class="datetime-picker-main"
+      <date-picker
+        v-if="isDatePicker && !onlyTimePicker"
+        @input="input($event, true)"
+        :value="date"
+        :is-empty-value="isEmptyValue"
+        :initial-view="initialView"
+        :locale="locale"
+        :start-from-sunday="startFromSunday"
+        :min-date="parsedMinDate"
+        :max-date="parsedMaxDate"
+        :disabled-dates="parsedDisabledDates"
+        :highlighted="parsedHighlighted"
+        @change-view="changeView"
+        @change-month="changeMonth"
+        @change-year="changeYear"
+        @change-decade="changeDecade"
       >
-        <button
-          v-if="!isDatePicker"
-          @click="togglePicker"
-          type="button"
-          class="date-picker__button"
-        >
-          <slot name="date">🗓</slot>
-        </button>
-        <date-picker
-          v-if="isDatePicker && !onlyTimePicker"
-          @input="input($event, true)"
-          :value="date"
-          :is-empty-value="isEmptyValue"
-          :initial-view="initialView"
-          :locale="locale"
-          :start-from-sunday="startFromSunday"
-          :min-date="parsedMinDate"
-          :max-date="parsedMaxDate"
-          :disabled-dates="parsedDisabledDates"
-          :highlighted="parsedHighlighted"
-          @change-view="changeView"
-        >
-          <slot
-            slot="months-prev"
-            name="months-prev"
-          />
-          <slot
-            slot="months-next"
-            name="months-next"
-          />
-          <slot
-            slot="years-prev"
-            name="years-prev"
-          />
-          <slot
-            slot="years-next"
-            name="years-next"
-          />
-          <slot
-            slot="decades-prev"
-            name="decades-prev"
-          />
-          <slot
-            slot="decades-next"
-            name="decades-next"
-          />
-        </date-picker>
-        <button
-          v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
-          @click="togglePicker"
-          type="button"
-          class="time-picker__button"
-        >
-          <slot name="time">🕘</slot>
-        </button>
-        <time-picker
-          v-if="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
-          @input="input"
-          :value="date"
-          :minute-step="minuteStep"
-          :seconds-picker="secondsPicker"
-          :hour-time="hourTime"
-        >
-          <slot
-            slot="hours-up"
-            name="hours-up"
-          />
-          <slot
-            slot="hours-down"
-            name="hours-down"
-          />
-          <slot
-            slot="minutes-up"
-            name="minutes-up"
-          />
-          <slot
-            slot="minutes-down"
-            name="minutes-down"
-          />
-          <slot
-            slot="seconds-up"
-            name="seconds-up"
-          />
-          <slot
-            slot="seconds-down"
-            name="seconds-down"
-          />
-          <slot
-            slot="meridiems-up"
-            name="seconds-up"
-          />
-          <slot
-            slot="meridiems-down"
-            name="seconds-down"
-          />
-        </time-picker>
-        <button
-          v-if="todayButton"
-          @click="today(true)"
-          type="button"
-          class="today__button"
-        >
-          <slot name="today">Today</slot>
-        </button>
-        <button
-          v-if="clearButton"
-          @click="clear(true)"
-          type="button"
-          class="clear__button"
-        >
-          <slot name="clear">Clear</slot>
-        </button>
-        <button
-          v-if="closeButton"
-          @click="close"
-          type="button"
-          class="close__button"
-        >
-          <slot name="close">Close</slot>
-        </button>
-      </div>
-    </template>
-    <template v-else>
-      <div
-        class="datetime-picker-inline"
-        :class="{
-          'datetime-picker-inline--disabled': disabled,
-        }"
+        <slot
+          slot="months-prev"
+          name="months-prev"
+        />
+        <slot
+          slot="months-next"
+          name="months-next"
+        />
+        <slot
+          slot="years-prev"
+          name="years-prev"
+        />
+        <slot
+          slot="years-next"
+          name="years-next"
+        />
+        <slot
+          slot="decades-prev"
+          name="decades-prev"
+        />
+        <slot
+          slot="decades-next"
+          name="decades-next"
+        />
+      </date-picker>
+      <button
+        v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
+        @click="togglePicker"
+        type="button"
+        class="time-picker__button"
       >
-        <button
-          v-if="!isDatePicker"
-          @click="togglePicker"
-          type="button"
-          class="date-picker__button"
-        >
-          <slot name="date">🗓</slot>
-        </button>
-        <date-picker
-          v-if="isDatePicker && !onlyTimePicker"
-          @input="input"
-          :value="date"
-          :is-empty-value="isEmptyValue"
-          :initial-view="initialView"
-          :locale="locale"
-          :start-from-sunday="startFromSunday"
-          :min-date="parsedMinDate"
-          :max-date="parsedMaxDate"
-          :disabled-dates="parsedDisabledDates"
-          :highlighted="parsedHighlighted"
-          @change-view="changeView"
-        >
-          <slot
-            name="months-prev"
-            slot="months-prev"
-          />
-          <slot
-            slot="months-next"
-            name="months-next"
-          />
-          <slot
-            slot="years-prev"
-            name="years-prev"
-          />
-          <slot
-            slot="years-next"
-            name="years-next"
-          />
-          <slot
-            slot="decades-prev"
-            name="decades-prev"
-          />
-          <slot
-            slot="decades-next"
-            name="decades-next"
-          />
-        </date-picker>
-        <button
-          v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
-          @click="togglePicker"
-          type="button"
-          class="time-picker__button"
-        >
-          <slot name="time">🕘</slot>
-        </button>
-        <time-picker
-          v-if="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
-          @input="input"
-          :value="date"
-          :minute-step="minuteStep"
-          :seconds-picker="secondsPicker"
-          :hour-time="hourTime"
-        >
-          <slot
-            slot="hours-up"
-            name="hours-up"
-          />
-          <slot
-            slot="hours-down"
-            name="hours-down"
-          />
-          <slot
-            slot="minutes-up"
-            name="minutes-up"
-          />
-          <slot
-            slot="minutes-down"
-            name="minutes-down"
-          />
-          <slot
-            slot="seconds-up"
-            name="seconds-up"
-          />
-          <slot
-            slot="seconds-down"
-            name="seconds-down"
-          />
-          <slot
-            slot="meridiems-up"
-            name="seconds-up"
-          />
-          <slot
-            slot="meridiems-down"
-            name="seconds-down"
-          />
-        </time-picker>
-        <button
-          v-if="todayButton"
-          @click="today"
-          type="button"
-          class="today__button"
-        >
-          <slot name="today">Today</slot>
-        </button>
-        <button
-          v-if="clearButton"
-          @click="clear"
-          type="button"
-          class="clear__button"
-        >
-          <slot name="clear">Clear</slot>
-        </button>
-        <button
-          v-if="closeButton"
-          @click="close"
-          type="button"
-          class="close__button"
-        >
-          <slot name="close">Close</slot>
-        </button>
-      </div>
-    </template>
+        <slot name="time">🕘</slot>
+      </button>
+      <time-picker
+        v-if="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
+        @input="input"
+        :value="date"
+        :minute-step="minuteStep"
+        :seconds-picker="secondsPicker"
+        :hour-time="hourTime"
+      >
+        <slot
+          slot="hours-up"
+          name="hours-up"
+        />
+        <slot
+          slot="hours-down"
+          name="hours-down"
+        />
+        <slot
+          slot="minutes-up"
+          name="minutes-up"
+        />
+        <slot
+          slot="minutes-down"
+          name="minutes-down"
+        />
+        <slot
+          slot="seconds-up"
+          name="seconds-up"
+        />
+        <slot
+          slot="seconds-down"
+          name="seconds-down"
+        />
+        <slot
+          slot="meridiems-up"
+          name="seconds-up"
+        />
+        <slot
+          slot="meridiems-down"
+          name="seconds-down"
+        />
+      </time-picker>
+      <button
+        v-if="todayButton"
+        @click="today(true)"
+        type="button"
+        class="today__button"
+      >
+        <slot name="today">Today</slot>
+      </button>
+      <button
+        v-if="clearButton"
+        @click="clear(true)"
+        type="button"
+        class="clear__button"
+      >
+        <slot name="clear">Clear</slot>
+      </button>
+      <button
+        v-if="closeButton"
+        @click="close"
+        type="button"
+        class="close__button"
+      >
+        <slot name="close">Close</slot>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -439,22 +316,7 @@ export default {
   },
   methods: {
     input(value, checkAutoClose = false) {
-      if (this.valueType === 'Auto') {
-        if ((typeof this.value) === 'string') {
-          this.$emit('input', value.toFormat(this.valueFormat));
-        } else if (this.value !== null && this.value.isValid === true) {
-          this.$emit('input', value);
-        } else {
-          this.$emit('input', value.toJSDate());
-        }
-      } else if (this.valueType === 'String') {
-        this.$emit('input', value.toFormat(this.valueFormat));
-      } else if (this.valueType === 'Luxon') {
-        this.$emit('input', value);
-      } else if (this.valueType === 'Date') {
-        this.$emit('input', value.toJSDate());
-      }
-
+      this.emitValueEvent(value, 'input');
       this.checkAutoClose(checkAutoClose);
     },
     toggle() {
@@ -465,32 +327,28 @@ export default {
       }
     },
     hide() {
-      this.isDatePicker = true;
-      this.isShow = false;
+      if (!this.inline) {
+        this.isDatePicker = true;
+        this.isShow = false;
 
-      this.$emit('close');
+        this.$emit('close');
+      }
     },
     togglePicker() {
       this.isDatePicker = !this.isDatePicker;
     },
     today(checkAutoClose = false) {
-      if (this.valueType === 'Auto') {
-        if ((typeof this.value) === 'string') {
-          this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
-        } else if (this.value !== null && this.value.isValid === true) {
-          this.$emit('input', this.getDateTimeLocal());
-        } else {
-          this.$emit('input', this.getDateTimeLocal().toJSDate());
-        }
-      } else if (this.valueType === 'String') {
-        this.$emit('input', this.getDateTimeLocal().toFormat(this.valueFormat));
-      } else if (this.valueType === 'Luxon') {
-        this.$emit('input', this.getDateTimeLocal());
-      } else if (this.valueType === 'Date') {
-        this.$emit('input', this.getDateTimeLocal().toJSDate());
-      }
-
+      this.emitValueEvent(this.getDateTimeLocal(), 'input');
       this.checkAutoClose(checkAutoClose);
+    },
+    changeMonth(value) {
+      this.emitValueEvent(value, 'change-month');
+    },
+    changeYear(value) {
+      this.emitValueEvent(value, 'change-year');
+    },
+    changeDecade(value) {
+      this.emitValueEvent(value, 'change-decade');
     },
     changeView(mode) {
       if (mode === 'days') {
@@ -510,6 +368,23 @@ export default {
     },
     close() {
       this.hide();
+    },
+    emitValueEvent(value, eventName) {
+      if (this.valueType === 'Auto') {
+        if ((typeof this.value) === 'string') {
+          this.$emit(eventName, value.toFormat(this.valueFormat));
+        } else if (this.value !== null && this.value.isValid === true) {
+          this.$emit(eventName, value);
+        } else {
+          this.$emit(eventName, value.toJSDate());
+        }
+      } else if (this.valueType === 'String') {
+        this.$emit(eventName, value.toFormat(this.valueFormat));
+      } else if (this.valueType === 'Luxon') {
+        this.$emit(eventName, value);
+      } else if (this.valueType === 'Date') {
+        this.$emit(eventName, value.toJSDate());
+      }
     },
   },
 };

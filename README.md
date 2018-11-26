@@ -87,6 +87,9 @@ Vue.component('date-time-picker', DateTimePicker);
 | --------------------- |
 | close                 |
 | open                  |
+| change-month          |
+| change-year           |
+| change-decade         |
 
 ## Development
 
