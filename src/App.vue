@@ -14,6 +14,53 @@
       v-model="date"
       value-type="String"
       :empty-value="null"
+      :hour-time="12"
+      @change-month="changeMonth"
+      @change-year="changeYear"
+      @change-decade="changeDecade"
+    >
+      <template
+        slot="months-prev"
+        slot-scope="props"
+      >
+        {{ props.item.value.toFormat('MMMM') }}
+      </template>
+      <template
+        slot="months-next"
+        slot-scope="props"
+      >
+        {{ props.item.value.toFormat('MMMM') }}
+      </template>
+      <template
+        slot="years-prev"
+        slot-scope="props"
+      >
+        {{ props.item.value.toFormat('yyyy') }}
+      </template>
+      <template
+        slot="years-next"
+        slot-scope="props"
+      >
+        {{ props.item.value.toFormat('yyyy') }}
+      </template>
+      <template
+        slot="decades-prev"
+        slot-scope="props"
+      >
+        {{ props.item.value.toFormat('yyyy') }}
+      </template>
+      <template
+        slot="decades-next"
+        slot-scope="props"
+      >
+        {{ props.item.value.toFormat('yyyy') }}
+      </template>
+    </DateTimePicker>
+
+    <DateTimePicker
+      v-model="date"
+      value-type="String"
+      :empty-value="null"
       :no-toggle-time-picker="true"
     />
 

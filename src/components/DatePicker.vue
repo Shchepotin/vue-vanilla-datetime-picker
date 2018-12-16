@@ -11,7 +11,10 @@
         @click="setPreviousMonth(previousMonth.value)"
         :disabled="previousMonth.disabled"
       >
-        <slot name="months-prev">&lt;</slot>
+        <slot
+          name="months-prev"
+          :item="previousMonth"
+        />
       </button>
       <button
         v-else-if="section === 'months'"
@@ -23,7 +26,10 @@
         @click="setPreviousYear(previousYear.value)"
         :disabled="previousYear.disabled"
       >
-        <slot name="years-prev">&lt;</slot>
+        <slot
+          name="years-prev"
+          :item="previousYear"
+        />
       </button>
       <button
         v-else-if="section === 'years'"
@@ -35,7 +41,10 @@
         @click="setPreviousDecade(previousDecade.value)"
         :disabled="previousDecade.disabled"
       >
-        <slot name="decades-prev">&lt;</slot>
+        <slot
+          name="decades-prev"
+          :item="previousDecade"
+        />
       </button>
       <button
         v-if="section !== 'years'"
@@ -62,7 +71,10 @@
         @click="setNextMonth(nextMonth.value)"
         :disabled="nextMonth.disabled"
       >
-        <slot name="months-next">&gt;</slot>
+        <slot
+          name="months-next"
+          :item="nextMonth"
+        />
       </button>
       <button
         v-else-if="section === 'months'"
@@ -74,7 +86,10 @@
         @click="setNextYear(nextYear.value)"
         :disabled="nextYear.disabled"
       >
-        <slot name="years-next">&gt;</slot>
+        <slot
+          name="years-next"
+          :item="nextYear"
+        />
       </button>
       <button
         v-else-if="section === 'years'"
@@ -86,7 +101,10 @@
         @click="setNextDecade(nextDecade.value)"
         :disabled="nextDecade.disabled"
       >
-        <slot name="decades-next">&gt;</slot>
+        <slot
+          name="decades-next"
+          :item="nextDecade"
+        />
       </button>
     </div>
     <div

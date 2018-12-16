@@ -58,30 +58,74 @@
         @change-year="changeYear"
         @change-decade="changeDecade"
       >
-        <slot
+        <template
           slot="months-prev"
-          name="months-prev"
-        />
-        <slot
+          slot-scope="props"
+        >
+          <slot
+            name="months-prev"
+            v-bind="props"
+          >
+            &lt;
+          </slot>
+        </template>
+        <template
           slot="months-next"
-          name="months-next"
-        />
-        <slot
+          slot-scope="props"
+        >
+          <slot
+            name="months-next"
+            v-bind="props"
+          >
+            &gt;
+          </slot>
+        </template>
+
+        <template
           slot="years-prev"
-          name="years-prev"
-        />
-        <slot
+          slot-scope="props"
+        >
+          <slot
+            name="years-prev"
+            v-bind="props"
+          >
+            &lt;
+          </slot>
+        </template>
+        <template
           slot="years-next"
-          name="years-next"
-        />
-        <slot
+          slot-scope="props"
+        >
+          <slot
+            name="years-next"
+            v-bind="props"
+          >
+            &gt;
+          </slot>
+        </template>
+
+        <template
           slot="decades-prev"
-          name="decades-prev"
-        />
-        <slot
+          slot-scope="props"
+        >
+          <slot
+            name="decades-prev"
+            v-bind="props"
+          >
+            &lt;
+          </slot>
+        </template>
+        <template
           slot="decades-next"
-          name="decades-next"
-        />
+          slot-scope="props"
+        >
+          <slot
+            name="decades-next"
+            v-bind="props"
+          >
+            &gt;
+          </slot>
+        </template>
       </date-picker>
       <button
         v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
@@ -351,11 +395,7 @@ export default {
       this.emitValueEvent(value, 'change-decade');
     },
     changeView(mode) {
-      if (mode === 'days') {
-        this.isShowTimePicker = true;
-      } else {
-        this.isShowTimePicker = false;
-      }
+      this.isShowTimePicker = mode === 'days';
     },
     clear(checkAutoClose = false) {
       this.$emit('input', this.emptyValue);
