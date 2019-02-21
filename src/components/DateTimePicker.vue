@@ -3,7 +3,6 @@
     class="datetime-picker"
     v-click-outside="hide"
   >
-  
     <button
       v-if="!inline"
       type="button"
