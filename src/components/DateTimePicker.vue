@@ -1,5 +1,8 @@
 <template>
-  <div class="datetime-picker">
+  <div
+    class="datetime-picker"
+    v-click-outside="hide"
+  >
     <button
       v-if="!inline"
       type="button"
@@ -24,9 +27,9 @@
         {{ formattedDateTime }}
       </slot>
     </button>
+
     <div
       v-if="isShow || inline"
-      v-click-outside="hide"
       :class="{
         'datetime-picker-main': !inline,
         'datetime-picker-inline': inline,
