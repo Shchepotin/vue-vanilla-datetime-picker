@@ -20,38 +20,32 @@
       @change-decade="changeDecade"
     >
       <template
-        slot="months-prev"
-        slot-scope="props"
+        v-slot:months-prev="props"
       >
         {{ props.item.value.toFormat('MMMM') }}
       </template>
       <template
-        slot="months-next"
-        slot-scope="props"
+        v-slot:months-next="props"
       >
         {{ props.item.value.toFormat('MMMM') }}
       </template>
       <template
-        slot="years-prev"
-        slot-scope="props"
+        v-slot:years-prev="props"
       >
         {{ props.item.value.toFormat('yyyy') }}
       </template>
       <template
-        slot="years-next"
-        slot-scope="props"
+        v-slot:years-next="props"
       >
         {{ props.item.value.toFormat('yyyy') }}
       </template>
       <template
-        slot="decades-prev"
-        slot-scope="props"
+        v-slot:decades-prev="props"
       >
         {{ props.item.value.toFormat('yyyy') }}
       </template>
       <template
-        slot="decades-next"
-        slot-scope="props"
+        v-slot:decades-next="props"
       >
         {{ props.item.value.toFormat('yyyy') }}
       </template>

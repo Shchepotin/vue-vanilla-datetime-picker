@@ -5,28 +5,40 @@
       @input="input"
       :options="hours"
     >
-      <slot
-        slot="up"
-        name="hours-up"
-      />
-      <slot
-        slot="down"
-        name="hours-down"
-      />
+      <template
+        v-slot:up
+      >
+        <slot
+          name="hours-up"
+        />
+      </template>
+      <template
+        v-slot:down
+      >
+        <slot
+          name="hours-down"
+        />
+      </template>
     </text-slider>
     <text-slider
       :value="selectedMinute"
       @input="input"
       :options="minutes"
     >
-      <slot
-        slot="up"
-        name="minutes-up"
-      />
-      <slot
-        slot="down"
-        name="minutes-down"
-      />
+      <template
+        v-slot:up
+      >
+        <slot
+          name="minutes-up"
+        />
+      </template>
+      <template
+        v-slot:down
+      >
+        <slot
+          name="minutes-down"
+        />
+      </template>
     </text-slider>
     <text-slider
       v-if="secondsPicker"
@@ -34,14 +46,20 @@
       @input="input"
       :options="seconds"
     >
-      <slot
-        slot="up"
-        name="seconds-up"
-      />
-      <slot
-        slot="down"
-        name="seconds-down"
-      />
+      <template
+        v-slot:up
+      >
+        <slot
+          name="seconds-up"
+        />
+      </template>
+      <template
+        v-slot:down
+      >
+        <slot
+          name="seconds-down"
+        />
+      </template>
     </text-slider>
     <text-slider
       v-if="hourTime === 12"
@@ -49,14 +67,20 @@
       @input="input"
       :options="meridiems"
     >
-      <slot
-        slot="up"
-        name="meridiems-up"
-      />
-      <slot
-        slot="down"
-        name="meridiems-down"
-      />
+      <template
+        v-slot:up
+      >
+        <slot
+          name="meridiems-up"
+        />
+      </template>
+      <template
+        v-slot:down
+      >
+        <slot
+          name="meridiems-down"
+        />
+      </template>
     </text-slider>
   </div>
 </template>

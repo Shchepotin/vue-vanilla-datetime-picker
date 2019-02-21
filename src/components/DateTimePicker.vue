@@ -62,8 +62,7 @@
         @change-decade="changeDecade"
       >
         <template
-          slot="months-prev"
-          slot-scope="props"
+          v-slot:months-prev="props"
         >
           <slot
             name="months-prev"
@@ -73,8 +72,7 @@
           </slot>
         </template>
         <template
-          slot="months-next"
-          slot-scope="props"
+          v-slot:months-next="props"
         >
           <slot
             name="months-next"
@@ -85,8 +83,7 @@
         </template>
 
         <template
-          slot="years-prev"
-          slot-scope="props"
+          v-slot:years-prev="props"
         >
           <slot
             name="years-prev"
@@ -96,8 +93,7 @@
           </slot>
         </template>
         <template
-          slot="years-next"
-          slot-scope="props"
+          v-slot:years-next="props"
         >
           <slot
             name="years-next"
@@ -108,8 +104,7 @@
         </template>
 
         <template
-          slot="decades-prev"
-          slot-scope="props"
+          v-slot:decades-prev="props"
         >
           <slot
             name="decades-prev"
@@ -119,8 +114,7 @@
           </slot>
         </template>
         <template
-          slot="decades-next"
-          slot-scope="props"
+          v-slot:decades-next="props"
         >
           <slot
             name="decades-next"
@@ -146,38 +140,62 @@
         :seconds-picker="secondsPicker"
         :hour-time="hourTime"
       >
-        <slot
-          slot="hours-up"
-          name="hours-up"
-        />
-        <slot
-          slot="hours-down"
-          name="hours-down"
-        />
-        <slot
-          slot="minutes-up"
-          name="minutes-up"
-        />
-        <slot
-          slot="minutes-down"
-          name="minutes-down"
-        />
-        <slot
-          slot="seconds-up"
-          name="seconds-up"
-        />
-        <slot
-          slot="seconds-down"
-          name="seconds-down"
-        />
-        <slot
-          slot="meridiems-up"
-          name="seconds-up"
-        />
-        <slot
-          slot="meridiems-down"
-          name="seconds-down"
-        />
+        <template
+          v-slot:hours-up
+        >
+          <slot
+            name="hours-up"
+          />
+        </template>
+        <template
+          v-slot:hours-down
+        >
+          <slot
+            name="hours-down"
+          />
+        </template>
+        <template
+          v-slot:minutes-up
+        >
+          <slot
+            name="minutes-up"
+          />
+        </template>
+        <template
+          v-slot:minutes-down
+        >
+          <slot
+            name="minutes-down"
+          />
+        </template>
+        <template
+          v-slot:seconds-up
+        >
+          <slot
+            name="seconds-up"
+          />
+        </template>
+        <template
+          v-slot:seconds-down
+        >
+          <slot
+            name="seconds-down"
+          />
+        </template>
+        <template
+          v-slot:meridiems-up
+        >
+          <slot
+            name="meridiems-up"
+          />
+        </template>
+        <template
+          v-slot:meridiems-down
+        >
+          <slot
+            name="meridiems-up"
+          />
+        </template>
       </time-picker>
       <button
         v-if="todayButton"
