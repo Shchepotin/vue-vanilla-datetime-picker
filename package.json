@@ -1,6 +1,6 @@
 {
   "name": "vue-vanilla-datetime-picker",
-  "version": "1.0.28",
+  "version": "1.1.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -25,17 +25,16 @@
   ],
   "main": "./dist/DateTimePicker.common.js",
   "dependencies": {
-    "luxon": "^1.9.0",
-    "vue": "^2.5.21",
-    "vue-click-outside": "^1.0.7"
+    "luxon": "^1.11.3",
+    "vue": "^2.6.6"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.2",
-    "@vue/cli-plugin-eslint": "^3.2.2",
-    "@vue/cli-service": "^3.2.3",
+    "@vue/cli-plugin-babel": "^3.4.1",
+    "@vue/cli-plugin-eslint": "^3.4.1",
+    "@vue/cli-service": "^3.4.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "vue-template-compiler": "^2.5.21"
+    "eslint-plugin-import": "^2.16.0",
+    "vue-template-compiler": "^2.6.6"
   },
   "eslintConfig": {
     "root": true,

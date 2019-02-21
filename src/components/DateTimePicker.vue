@@ -208,7 +208,7 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside';
+import ClickOutside from '../directives/click-outside';
 import DatePicker from './DatePicker.vue';
 import TimePicker from './TimePicker.vue';
 
@@ -374,7 +374,7 @@ export default {
       }
     },
     hide() {
-      if (!this.inline) {
+      if (!this.inline && this.isShow) {
         this.isDatePicker = true;
         this.isShow = false;
 
