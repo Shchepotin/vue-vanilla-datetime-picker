@@ -6,7 +6,7 @@ See demo [here](https://codepen.io/Shchepotin/pen/wEQyQx?editors=1010)
 
 ## Requirements
 
-- Vue.js `^2.6.0`
+- Vue.js `^2.5.0`
 
 ## Usage
 
