@@ -108,7 +108,7 @@
       </button>
     </div>
     <div
-      v-if="section === 'days'"
+      v-show="section === 'days'"
       class="date-picker__days"
     >
       <div
@@ -146,7 +146,7 @@
       </div>
     </div>
     <div
-      v-else-if="section === 'months'"
+      v-show="section === 'months'"
       class="date-picker__months"
     >
       <div
@@ -169,7 +169,7 @@
       </div>
     </div>
     <div
-      v-else-if="section === 'years'"
+      v-show="section === 'years'"
       class="date-picker__years"
     >
       <div

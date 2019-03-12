@@ -37,7 +37,7 @@
       }"
     >
       <button
-        v-if="!isDatePicker"
+        v-show="!isDatePicker"
         @click="togglePicker"
         type="button"
         class="date-picker__button"
@@ -45,7 +45,7 @@
         <slot name="date">🗓</slot>
       </button>
       <date-picker
-        v-if="isDatePicker && !onlyTimePicker"
+        v-show="isDatePicker && !onlyTimePicker"
         @input="input($event, true)"
         :value="date"
         :is-empty-value="isEmptyValue"
@@ -125,7 +125,7 @@
         </template>
       </date-picker>
       <button
-        v-if="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
+        v-show="isDatePicker && timePicker && !noToggleTimePicker && isShowTimePicker && !onlyTimePicker"
         @click="togglePicker"
         type="button"
         class="time-picker__button"
@@ -133,7 +133,7 @@
         <slot name="time">🕘</slot>
       </button>
       <time-picker
-        v-if="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
+        v-show="((!isDatePicker || noToggleTimePicker) && isShowTimePicker) || onlyTimePicker"
         @input="input"
         :value="date"
         :minute-step="minuteStep"
