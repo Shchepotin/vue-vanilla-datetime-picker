@@ -193,7 +193,7 @@
           v-slot:meridiems-down
         >
           <slot
-            name="meridiems-up"
+            name="meridiems-down"
           />
         </template>
       </time-picker>
