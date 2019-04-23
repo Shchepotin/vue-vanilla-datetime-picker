@@ -1,8 +1,12 @@
 # Vue Datetime Picker
 
+Fast, powerful and easy to use component datetime picker for [VueJS](https://vuejs.org/). The component includes localization, highlight and disable date, 12/24-hour time, inline mode, etc.
+
 ## Demo
 
 See demo [here](https://codepen.io/Shchepotin/pen/wEQyQx?editors=1010)
+
+![vue-datetime-picker](https://user-images.githubusercontent.com/6001723/56603715-ec324600-6608-11e9-9c54-0862878a7168.gif)
 
 ## Requirements
 
@@ -91,6 +95,10 @@ Vue.component('date-time-picker', DateTimePicker);
 | change-year           |
 | change-decade         |
 
+## What about RTL support?
+
+If you need an RTL version of component for your project, recommend use [PostCSS](https://www.npmjs.com/package/postcss) plugin which is called [postcss-rtl](https://www.npmjs.com/package/postcss-rtl).
+
 ## Development
 
 ```
@@ -107,10 +115,4 @@ npm run serve
 
 ```
 npm run build-lib
-```
-
-### Lints and fixes files
-
-```
-npm run lint
 ```
