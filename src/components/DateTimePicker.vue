@@ -385,10 +385,10 @@ export default {
       this.checkAutoClose(checkAutoClose);
     },
     toggle() {
-      this.isShow = !this.isShow;
-
       if (this.isShow) {
-        this.$emit('open');
+        this.close();
+      } else {
+        this.open();
       }
     },
     hide() {
@@ -426,6 +426,11 @@ export default {
       if (checkAutoClose && this.autoClose) {
         this.hide();
       }
+    },
+    open() {
+      this.isShow = true;
+
+      this.$emit('open');
     },
     close() {
       this.hide();

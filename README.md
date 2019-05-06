@@ -95,6 +95,13 @@ Vue.component('date-time-picker', DateTimePicker);
 | change-year           |
 | change-decade         |
 
+### Methods:
+
+| Name                  | Description           |
+| --------------------- | --------------------- |
+| open                  | Open datetime picker  |
+| close                 | Close datetime picker |
+
 ## What about RTL support?
 
 If you need an RTL version of component for your project, recommend use [PostCSS](https://www.npmjs.com/package/postcss) plugin which is called [postcss-rtl](https://www.npmjs.com/package/postcss-rtl).
