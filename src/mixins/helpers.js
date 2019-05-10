@@ -75,7 +75,7 @@ export default {
     generateMonthsMatrix(date, locale = 'en') {
       return Array.from({ length: 12 }, (elColumn, columnIndex) => {
         const dateTime = DateTime.local(
-          date.year, columnIndex + 1, date.day,
+          date.year, columnIndex + 1, 1,
           date.hour, date.minute, date.second,
         ).setLocale(locale);
 
@@ -89,7 +89,7 @@ export default {
     generateYearsMatrix(date) {
       return Array.from({ length: 10 }, (elColumn, columnIndex) => {
         const dateTime = DateTime.local(
-          (date.year - (date.year % 10)) + columnIndex, date.month, date.day,
+          (date.year - (date.year % 10)) + columnIndex, date.month, 1,
           date.hour, date.minute, date.second,
         );
 

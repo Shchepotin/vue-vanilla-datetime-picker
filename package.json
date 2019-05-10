@@ -1,6 +1,6 @@
 {
   "name": "vue-vanilla-datetime-picker",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -25,7 +25,7 @@
   ],
   "main": "./dist/DateTimePicker.common.js",
   "dependencies": {
-    "luxon": "^1.11.4",
+    "luxon": "^1.13.2",
     "vue": "^2.6.8"
   },
   "devDependencies": {
