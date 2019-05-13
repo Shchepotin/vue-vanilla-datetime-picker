@@ -295,8 +295,8 @@ export default {
 
       return {
         value,
-        disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy') < value.toFormat('yyyy'))
-          || (this.minDate !== null && this.minDate.toFormat('yyyy') > value.toFormat('yyyy')),
+        disabled: (this.maxDate !== null && this.toDecade(this.maxDate).toFormat('yyyy') < this.toDecade(value).toFormat('yyyy'))
+          || (this.minDate !== null && this.toDecade(this.minDate).toFormat('yyyy') > this.toDecade(value).toFormat('yyyy')),
       };
     },
     nextMonth() {
@@ -322,8 +322,8 @@ export default {
 
       return {
         value,
-        disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy') < value.toFormat('yyyy'))
-          || (this.minDate !== null && this.minDate.toFormat('yyyy') > value.toFormat('yyyy')),
+        disabled: (this.maxDate !== null && this.toDecade(this.maxDate).toFormat('yyyy') < this.toDecade(value).toFormat('yyyy'))
+          || (this.minDate !== null && this.toDecade(this.minDate).toFormat('yyyy') > this.toDecade(value).toFormat('yyyy')),
       };
     },
     displayYear() {

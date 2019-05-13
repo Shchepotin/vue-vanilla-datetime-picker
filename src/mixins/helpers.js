@@ -119,6 +119,9 @@ export default {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
         .minus({ year: 1 });
     },
+    toDecade(date) {
+      return DateTime.local(date.year - (date.year % 10), date.month, 1, date.hour, date.minute, date.second);
+    },
     getNextYear(date) {
       return DateTime.local(date.year, date.month, 1, date.hour, date.minute, date.second)
         .plus({ year: 1 });

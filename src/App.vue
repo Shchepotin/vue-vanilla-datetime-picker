@@ -8,6 +8,8 @@
       @change-month="changeMonth"
       @change-year="changeYear"
       @change-decade="changeDecade"
+      min-date="2009-01-01"
+      max-date="2030-01-01"
     />
 
     <DateTimePicker
