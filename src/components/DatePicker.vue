@@ -14,7 +14,9 @@
         <slot
           name="months-prev"
           :item="previousMonth"
-        />
+        >
+          &lt;
+        </slot>
       </button>
       <button
         v-else-if="section === 'months'"
@@ -29,7 +31,9 @@
         <slot
           name="years-prev"
           :item="previousYear"
-        />
+        >
+          &lt;
+        </slot>
       </button>
       <button
         v-else-if="section === 'years'"
@@ -44,7 +48,9 @@
         <slot
           name="decades-prev"
           :item="previousDecade"
-        />
+        >
+          &lt;
+        </slot>
       </button>
       <button
         v-if="section !== 'years'"
@@ -74,7 +80,9 @@
         <slot
           name="months-next"
           :item="nextMonth"
-        />
+        >
+          &gt;
+        </slot>
       </button>
       <button
         v-else-if="section === 'months'"
@@ -89,7 +97,9 @@
         <slot
           name="years-next"
           :item="nextYear"
-        />
+        >
+          &gt;
+        </slot>
       </button>
       <button
         v-else-if="section === 'years'"
@@ -104,7 +114,9 @@
         <slot
           name="decades-next"
           :item="nextDecade"
-        />
+        >
+          &gt;
+        </slot>
       </button>
     </div>
     <div
