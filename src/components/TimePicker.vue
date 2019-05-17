@@ -10,14 +10,18 @@
       >
         <slot
           name="hours-up"
-        />
+        >
+          &uarr;
+        </slot>
       </template>
       <template
         v-slot:down
       >
         <slot
           name="hours-down"
-        />
+        >
+          &darr;
+        </slot>
       </template>
     </text-slider>
     <text-slider
@@ -30,14 +34,18 @@
       >
         <slot
           name="minutes-up"
-        />
+        >
+          &uarr;
+        </slot>
       </template>
       <template
         v-slot:down
       >
         <slot
           name="minutes-down"
-        />
+        >
+          &darr;
+        </slot>
       </template>
     </text-slider>
     <text-slider
@@ -51,14 +59,18 @@
       >
         <slot
           name="seconds-up"
-        />
+        >
+          &uarr;
+        </slot>
       </template>
       <template
         v-slot:down
       >
         <slot
           name="seconds-down"
-        />
+        >
+          &darr;
+        </slot>
       </template>
     </text-slider>
     <text-slider
@@ -72,14 +84,18 @@
       >
         <slot
           name="meridiems-up"
-        />
+        >
+          &uarr;
+        </slot>
       </template>
       <template
         v-slot:down
       >
         <slot
           name="meridiems-down"
-        />
+        >
+          &darr;
+        </slot>
       </template>
     </text-slider>
   </div>
