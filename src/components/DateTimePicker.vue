@@ -145,56 +145,72 @@
         >
           <slot
             name="hours-up"
-          />
+          >
+            &uarr;
+          </slot>
         </template>
         <template
           v-slot:hours-down
         >
           <slot
             name="hours-down"
-          />
+          >
+            &darr;
+          </slot>
         </template>
         <template
           v-slot:minutes-up
         >
           <slot
             name="minutes-up"
-          />
+          >
+            &uarr;
+          </slot>
         </template>
         <template
           v-slot:minutes-down
         >
           <slot
             name="minutes-down"
-          />
+          >
+            &darr;
+          </slot>
         </template>
         <template
           v-slot:seconds-up
         >
           <slot
             name="seconds-up"
-          />
+          >
+            &uarr;
+          </slot>
         </template>
         <template
           v-slot:seconds-down
         >
           <slot
             name="seconds-down"
-          />
+          >
+            &darr;
+          </slot>
         </template>
         <template
           v-slot:meridiems-up
         >
           <slot
             name="meridiems-up"
-          />
+          >
+            &uarr;
+          </slot>
         </template>
         <template
           v-slot:meridiems-down
         >
           <slot
             name="meridiems-down"
-          />
+          >
+            &darr;
+          </slot>
         </template>
       </time-picker>
       <button
