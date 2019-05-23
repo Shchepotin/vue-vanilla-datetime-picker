@@ -1,5 +1,7 @@
 # Vue Datetime Picker
 
+[![Build Status](https://travis-ci.org/Shchepotin/vue-vanilla-datetime-picker.svg?branch=master)](https://travis-ci.org/Shchepotin/vue-vanilla-datetime-picker)
+
 Fast, powerful and easy to use component datetime picker for [VueJS](https://vuejs.org/). The component includes localization, highlight and disable date, 12/24-hour time, inline mode, etc.
 
 ## Demo
