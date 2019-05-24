@@ -64,7 +64,7 @@ const destroyInstance = (el) => {
   }
 
   const instance = instances[instanceIndex];
-  instance.eventHandlers.forEach(({ event, handler }) => document.removeEventListener(event, handler));
+  instance.eventHandlers.forEach(({ event, handler }) => document.removeEventListener(event, handler, true));
   instances.splice(instanceIndex, 1);
 };
 
@@ -80,7 +80,7 @@ const bind = (el, { value }) => {
   const instance = createInstance(el, events, handler, middleware);
 
   instance.eventHandlers.forEach(({ event, handler: handlerEvent }) => {
-    document.addEventListener(event, handlerEvent);
+    document.addEventListener(event, handlerEvent, true);
   });
 };
 
@@ -98,7 +98,7 @@ const update = (el, { value }) => {
   }
 
   instance.eventHandlers
-    .forEach(({ event, handler: handlerEvent }) => document.removeEventListener(event, handlerEvent));
+    .forEach(({ event, handler: handlerEvent }) => document.removeEventListener(event, handlerEvent, true));
 
   instance.eventHandlers = events.map(eventName => ({
     event: eventName,
@@ -110,10 +110,9 @@ const update = (el, { value }) => {
   }));
 
   instance.eventHandlers.forEach(({ event, handler: handlerEvent }) => {
-    document.addEventListener(event, handlerEvent);
+    document.addEventListener(event, handlerEvent, true);
   });
 };
-
 
 const directive = {
   bind,
