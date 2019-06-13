@@ -150,6 +150,7 @@
             'date-picker__day--previous': info.status === 'previous',
             'date-picker__day--next': info.status === 'next',
             'date-picker__day--disabled': info.disabled,
+            'date-picker__day--today': info.today,
           }, info.highlightedClass]"
           @click="!info.disabled && selectDay(info.date)"
         >
@@ -259,6 +260,7 @@ export default {
         }
 
         return {
+          today: info.date.toFormat('yyyy-LL-dd') === this.getDateTimeLocal().toFormat('yyyy-LL-dd'),
           selected: info.date.toFormat('yyyy-LL-dd') === this.value.toFormat('yyyy-LL-dd'),
           disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy-LL-dd') < info.date.toFormat('yyyy-LL-dd'))
             || (this.minDate !== null && this.minDate.toFormat('yyyy-LL-dd') > info.date.toFormat('yyyy-LL-dd'))
