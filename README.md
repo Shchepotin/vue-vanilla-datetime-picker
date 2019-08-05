@@ -51,6 +51,7 @@ Vue.component('date-time-picker', DateTimePicker);
 | minute-step           |          | Number                          | 1                   | Set step for minute.                                                                                                   |
 | seconds-picker        |          | Boolean                         | false               | Show second picker.                                                                                                    |
 | initial-view          |          | String                          | days                | Initial view: 'days', 'months', 'years'                                                                                |
+| initial-view-date     |          | String, Date, DateTime (luxon)  | days                | Initial date view                                                                                                      |
 | main-button-class     |          | String                          |                     | Class for main button.                                                                                                 |
 | disabled-dates        |          | Array                           | []                  | Array of disabled dates.                                                                                               |
 | highlighted           |          | Array                           | []                  | Array of highlighted dates. Example: [{ date: '2018-09-17', class: 'highlighted' }]                                    |
