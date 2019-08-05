@@ -260,6 +260,9 @@ export default {
     maxDate: {
       default: () => null,
     },
+    initialViewDate: {
+      default: () => null,
+    },
     disabledDates: {
       type: [Array],
       default: () => [],
@@ -371,13 +374,16 @@ export default {
   },
   computed: {
     date() {
-      return this.toDateTime(this.value, this.valueFormat, this.getDateTimeLocal());
+      return this.toDateTime(this.value || this.parsedInitialViewDate, this.valueFormat, this.getDateTimeLocal());
     },
     parsedMinDate() {
       return this.toDateTime(this.minDate, this.constraintsFormat);
     },
     parsedMaxDate() {
       return this.toDateTime(this.maxDate, this.constraintsFormat);
+    },
+    parsedInitialViewDate() {
+      return this.toDateTime(this.initialViewDate, this.constraintsFormat);
     },
     parsedDisabledDates() {
       return this.disabledDates.map(date => this.toDateTime(date, this.constraintsFormat));
