@@ -132,21 +132,21 @@ export default {
   ],
   computed: {
     hours() {
-      return this.generateHoursMatrix(this.value).map(element => ({
+      return this.generateHoursMatrix(this.value).map((element) => ({
         key: element.toFormat('HH'),
         displayValue: element.toFormat(this.hourTime === 12 ? 'hh' : 'HH'),
         originalValue: element,
       }));
     },
     minutes() {
-      return this.generateMinutesMatrix(this.value, this.minuteStep).map(element => ({
+      return this.generateMinutesMatrix(this.value, this.minuteStep).map((element) => ({
         key: element.toFormat('mm'),
         displayValue: element.toFormat('mm'),
         originalValue: element,
       }));
     },
     seconds() {
-      return this.generateSecondsMatrix(this.value).map(element => ({
+      return this.generateSecondsMatrix(this.value).map((element) => ({
         key: element.toFormat('ss'),
         displayValue: element.toFormat('ss'),
         originalValue: element,
@@ -154,8 +154,8 @@ export default {
     },
     meridiems() {
       return this.hours
-        .filter(element => element.originalValue.toFormat('h') === this.selectedHour.originalValue.toFormat('h'))
-        .map(element => ({
+        .filter((element) => element.originalValue.toFormat('h') === this.selectedHour.originalValue.toFormat('h'))
+        .map((element) => ({
           ...element,
           displayValue: element.originalValue.toFormat('a'),
         }));

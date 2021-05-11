@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import { shallowMount } from '@vue/test-utils';
-import DateTimePicker from '@/components/DateTimePicker.vue';
+import DateTimePicker from '../../src/components/DateTimePicker.vue';
 
 describe('DateTimePicker. Prop value-format', () => {
   it('Props default value-format', () => {

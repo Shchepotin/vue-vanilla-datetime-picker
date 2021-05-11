@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     selectedValue() {
-      return this.options.filter(element => element.key === this.value.key)[0];
+      return this.options.filter((element) => element.key === this.value.key)[0];
     },
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
         && this.options[index + 1].key === this.value.key)[0];
 
       if (newValue === undefined) {
-        newValue = this.options.filter(element => element.key < this.value.key);
+        newValue = this.options.filter((element) => element.key < this.value.key);
         newValue = newValue[newValue.length - 1];
       }
 
@@ -56,7 +56,7 @@ export default {
         && this.options[index - 1].key === this.value.key);
 
       if (newValue === undefined) {
-        [newValue] = this.options.filter(element => element.key > this.value.key);
+        [newValue] = this.options.filter((element) => element.key > this.value.key);
       }
 
       if (newValue !== undefined) {

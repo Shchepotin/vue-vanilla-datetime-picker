@@ -386,10 +386,10 @@ export default {
       return this.toDateTime(this.initialViewDate, this.constraintsFormat);
     },
     parsedDisabledDates() {
-      return this.disabledDates.map(date => this.toDateTime(date, this.constraintsFormat));
+      return this.disabledDates.map((date) => this.toDateTime(date, this.constraintsFormat));
     },
     parsedHighlighted() {
-      return this.highlighted.map(info => ({
+      return this.highlighted.map((info) => ({
         date: this.toDateTime(info.date, this.constraintsFormat),
         class: info.class,
       }));

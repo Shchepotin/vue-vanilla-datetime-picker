@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import { shallowMount } from '@vue/test-utils';
-import DateTimePicker from '@/components/DateTimePicker.vue';
+import DateTimePicker from '../../src/components/DateTimePicker.vue';
 
 describe('DateTimePicker. Prop value-type', () => {
   it('Props value-type="Auto"', () => {
@@ -37,7 +37,6 @@ describe('DateTimePicker. Prop value-type', () => {
     });
     expect(wrapper.text()).toMatch(DateTime.fromJSDate(value).toFormat('yyyy-LL-dd HH:mm'));
   });
-
 
   it('Props value-type="Luxon"', () => {
     const value = DateTime.local();

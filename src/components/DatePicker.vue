@@ -252,8 +252,8 @@ export default {
   ],
   computed: {
     dateMatrixWithSelectedDate() {
-      return this.dateMatrix.map(rows => rows.map((info) => {
-        let highlightedClass = this.highlighted.find(highlighted => highlighted.date.toFormat('yyyy-LL-dd') === info.date.toFormat('yyyy-LL-dd'));
+      return this.dateMatrix.map((rows) => rows.map((info) => {
+        let highlightedClass = this.highlighted.find((highlighted) => highlighted.date.toFormat('yyyy-LL-dd') === info.date.toFormat('yyyy-LL-dd'));
 
         if (highlightedClass !== undefined) {
           highlightedClass = highlightedClass.class;
@@ -264,14 +264,14 @@ export default {
           selected: info.date.toFormat('yyyy-LL-dd') === this.value.toFormat('yyyy-LL-dd'),
           disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy-LL-dd') < info.date.toFormat('yyyy-LL-dd'))
             || (this.minDate !== null && this.minDate.toFormat('yyyy-LL-dd') > info.date.toFormat('yyyy-LL-dd'))
-            || this.disabledDates.find(date => date.toFormat('yyyy-LL-dd') === info.date.toFormat('yyyy-LL-dd')),
+            || this.disabledDates.find((date) => date.toFormat('yyyy-LL-dd') === info.date.toFormat('yyyy-LL-dd')),
           highlightedClass,
           ...info,
         };
       }));
     },
     monthMatrixWithSelectedMonth() {
-      return this.monthsMatrix.map(info => ({
+      return this.monthsMatrix.map((info) => ({
         selected: info.month.toFormat('yyyy-LL') === this.value.toFormat('yyyy-LL'),
         disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy-LL') < info.month.toFormat('yyyy-LL'))
           || (this.minDate !== null && this.minDate.toFormat('yyyy-LL') > info.month.toFormat('yyyy-LL')),
@@ -279,7 +279,7 @@ export default {
       }));
     },
     yearMatrixWithSelectedYear() {
-      return this.yearsMatrix.map(info => ({
+      return this.yearsMatrix.map((info) => ({
         selected: info.year.toFormat('yyyy') === this.value.toFormat('yyyy'),
         disabled: (this.maxDate !== null && this.maxDate.toFormat('yyyy') < info.year.toFormat('yyyy'))
           || (this.minDate !== null && this.minDate.toFormat('yyyy') > info.year.toFormat('yyyy')),

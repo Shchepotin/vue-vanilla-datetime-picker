@@ -20,7 +20,7 @@ const processDirectiveArguments = (bindingValue) => {
 
   return {
     handler: isFunction ? bindingValue : bindingValue.handler,
-    middleware: bindingValue.middleware || (isClickOutside => isClickOutside),
+    middleware: bindingValue.middleware || ((isClickOutside) => isClickOutside),
     events: bindingValue.events || detectedEvents,
     active: isFunction && bindingValue.active === undefined ? true : !!bindingValue.active,
   };
@@ -43,9 +43,9 @@ const onEvent = ({
 const createInstance = (el, events, handler, middleware) => {
   const instance = {
     el,
-    eventHandlers: events.map(eventName => ({
+    eventHandlers: events.map((eventName) => ({
       event: eventName,
-      handler: event => onEvent({
+      handler: (event) => onEvent({
         event, el, handler, middleware,
       }),
     })),
@@ -57,7 +57,7 @@ const createInstance = (el, events, handler, middleware) => {
 };
 
 const destroyInstance = (el) => {
-  const instanceIndex = funcIndexOf(instances, instance => instance.el === el);
+  const instanceIndex = funcIndexOf(instances, (instance) => instance.el === el);
 
   if (instanceIndex === -1) {
     throw new Error(`unable to find a v-click-outside instance for el: ${el}`);
@@ -90,7 +90,7 @@ const update = (el, { value }) => {
   } = processDirectiveArguments(value);
 
   const instance = instances
-    .find(instanceElement => instanceElement.el === el) || createInstance(el, events, handler, middleware);
+    .find((instanceElement) => instanceElement.el === el) || createInstance(el, events, handler, middleware);
 
   if (!active) {
     destroyInstance(el);
@@ -100,7 +100,7 @@ const update = (el, { value }) => {
   instance.eventHandlers
     .forEach(({ event, handler: handlerEvent }) => document.removeEventListener(event, handlerEvent, true));
 
-  instance.eventHandlers = events.map(eventName => ({
+  instance.eventHandlers = events.map((eventName) => ({
     event: eventName,
     handler(event) {
       onEvent({

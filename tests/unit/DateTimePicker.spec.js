@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import DateTimePicker from '@/components/DateTimePicker.vue';
+import DateTimePicker from '../../src/components/DateTimePicker.vue';
 
 describe('Simple DateTimePicker', () => {
   it('renders props.value when passed', () => {
